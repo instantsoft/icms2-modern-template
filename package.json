@@ -16,7 +16,7 @@
     "icms2"
   ],
   "author": "instantsoft",
-  "license": "ISC",
+  "license": "MIT & GNU/GPL v2",
   "bugs": {
     "url": "https://github.com/instantsoft/icms2-modern-template/issues"
   },
