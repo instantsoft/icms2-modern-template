@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/instantsoft/icms2-modern-template#readme",
   "devDependencies": {
+    "bower": "^1.8.0",
     "browser-sync": "^2.18.13",
     "css-mqpacker": "^6.0.1",
     "del": "^3.0.0",

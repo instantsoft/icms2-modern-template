@@ -1,0 +1,12 @@
+// Стили дополняющие bootstrap
+.btn{
+  &:hover {
+    cursor:pointer;
+  }
+}
+.card {
+  .list-group-item {
+    margin-top:-$card-border-width;
+    border-width: $card-border-width;
+  }
+}

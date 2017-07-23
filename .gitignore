@@ -18,3 +18,4 @@ README.RU.md
 cache/
 node_modules/
 package-lock.json
+bower_components/

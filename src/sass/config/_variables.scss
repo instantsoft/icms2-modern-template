@@ -1,0 +1,13 @@
+// Grid columns
+// Set the number of columns and specify the width of the gutters.
+$enable-flex: true;
+$grid-columns: 12 !default;
+$grid-gutter-width-base: 2rem !default;
+
+// Font awesome init
+$fa-font-path: '../fonts' !default;
+$fa-font-size-base: 14px !default;
+
+$font-size-root: 14px !default;
+
+

@@ -1,0 +1,33 @@
+html {
+  min-height: 100%;
+  position: relative;
+  font-size: 16px;
+}
+
+html, body {
+  height: 100%;
+}
+
+a {
+  &:focus {
+    outline: thin none;
+  }
+}
+
+code {
+  display: block;
+  padding: ($grid-gutter-width-base / 4);
+  pre {
+    margin-bottom: 0;
+  }
+}
+
+small {
+  font-size: 85.7%;
+}
+
+blockquote {
+    padding: ($spacer / 2) $spacer;
+    margin-bottom: $spacer;
+    font-size: $blockquote-font-size;
+}
