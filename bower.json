@@ -1,0 +1,29 @@
+{
+  "name": "icms2-modern-template",
+  "description": "Modern template for InstanCMS2",
+  "main": "gulpfile.js",
+  "authors": [
+    "instantsoft"
+  ],
+  "license": "MIT & GNU/GPL v2",
+  "keywords": [
+    "instantcms",
+    "template",
+    "icms2"
+  ],
+  "homepage": "https://github.com/instantsoft/icms2-modern-template",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "v4.0.0-alpha.6"
+  },
+  "devDependencies": {
+    "animate.css": "^3.5.2"
+  }
+}
