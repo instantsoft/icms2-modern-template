@@ -42,23 +42,6 @@ class formModernTemplateOptions extends cmsForm {
 
             array(
                 'type' => 'fieldset',
-                'title' => LANG_DEFAULT_THEME_LAYOUT_COLUMNS,
-                'childs' => array(
-
-                    new fieldList('aside_pos', array(
-                        'title' => LANG_DEFAULT_THEME_LAYOUT_SIDEBAR_POS,
-                        'default' => 'right',
-                        'items' => array(
-                            'left'  => LANG_DEFAULT_THEME_LAYOUT_LEFT,
-                            'right' => LANG_DEFAULT_THEME_LAYOUT_RIGHT
-                        )
-                    ))
-
-                )
-            ),
-
-            array(
-                'type' => 'fieldset',
                 'title' => LANG_ADMIN_CONTROLLER,
                 'childs' => array(
 

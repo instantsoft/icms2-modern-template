@@ -1,48 +1,96 @@
 <table>
     <tr>
+        <td colspan="2">
+            {block:header_top}
+            {position:header_top}
+        </td>
+    </tr>
+    <tr>
+        <td width="50%">
+            {position:header_left}
+        </td>
+        <td width="50%">
+            {position:header_right}
+        </td>
+    </tr>
+</table>
+<table>
+    <tr>
         <td width="30%" class="filled">
             {cell:LANG_PAGE_LOGO}
         </td>
         <td>
-            {position:header}
+            {position:header_bottom}
         </td>
     </tr>
 </table>
 <table>
     <tr>
-        <td colspan="2">
-            {position:top}
+        <td class="filled">
+            {cell:LANG_..._BREADCRUMBS}
+        </td>
+        <td width="30%" >
+            {position:header_actions}
         </td>
     </tr>
+</table>
+<table>
     <tr>
-        <?php if($this->options['aside_pos'] == 'left'){ ?>
-            <td width="35%">
-                {position:right-top}
-                {position:right-center}
-                {position:right-bottom}
-            </td>
-        <?php } ?>
-        <td width="65%">
+        <td>
+            {block:maintop-fullwidth}
+            {position:maintop-fullwidth-top}
+            {position:maintop-fullwidth-center}
+            {position:maintop-fullwidth-bottom}
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td width="30%">
+            {block:left}
+            {position:left-top}
+            {position:left-center}
+            {position:left-bottom}
+        </td>
+        <td width="40%">
             {position:left-top}
             {block:LANG_PAGE_BODY}
             {position:left-bottom}
         </td>
-        <?php if($this->options['aside_pos'] == 'right'){ ?>
-            <td width="35%">
-                {position:right-top}
-                {position:right-center}
-                {position:right-bottom}
-            </td>
-        <?php } ?>
+        <td width="30%">
+            {block:right}
+            {position:right-top}
+            {position:right-center}
+            {position:right-bottom}
+        </td>
     </tr>
 </table>
 <table>
     <tr>
-        <td width="65%" class="filled">
-            {cell:LANG_PAGE_FOOTER}
+        <td>
+            {block:mainbottom-fullwidth}
+            {position:mainbottom-fullwidth-top}
+            {position:mainbottom-fullwidth-center}
+            {position:mainbottom-fullwidth-bottom}
+        </td>
+    </tr>
+</table>
+<table>
+    <tr>
+        <td>
+            {block:footer}
+            {position:footer}
+        </td>
+    </tr>
+</table>
+<table>
+    <tr>
+        <td width="30%" class="filled">
+            {cell:LANG_..._COPYRIGHT_AND_TITLE}
         </td>
         <td>
-            {position:footer}
+            {position:footer_copyright}
         </td>
     </tr>
 </table>
