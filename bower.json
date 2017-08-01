@@ -24,6 +24,7 @@
     "bootstrap": "v4.0.0-alpha.6"
   },
   "devDependencies": {
-    "animate.css": "^3.5.2"
+    "animate.css": "^3.5.2",
+    "font-awesome": "Font-Awesome#^4.7.0"
   }
 }
