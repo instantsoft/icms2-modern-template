@@ -46,7 +46,7 @@
             <?php if (!empty($fieldset['fields'])) { ?>
                 <?php foreach ($fieldset['fields'] as $name => $field) { ?>
 
-                    <div class="field ft_<?php echo $field['type']; ?> f_<?php echo $field['name']; ?> <?php echo $field['options']['wrap_type']; ?>_field" <?php if($field['options']['wrap_width']){ ?> style="width: <?php echo $field['options']['wrap_width']; ?>;"<?php } ?>>
+                    <div class="field ft_<?php echo $field['type']; ?> f_<?php echo $field['name']; ?> <?php echo $field['options']['wrap_type']; ?>_field <?php if ($field['options']['label_in_item'] == 'left') { echo "field-title-left"; } ?>" <?php if($field['options']['wrap_width']){ ?> style="width: <?php echo $field['options']['wrap_width']; ?>;"<?php } ?>>
                         <?php if ($field['options']['label_in_item'] != 'none') { ?>
                             <div class="title_<?php echo $field['options']['label_in_item']; ?>"><?php html($field['title']); ?>: </div>
                         <?php } ?>
@@ -120,38 +120,43 @@
     <?php } ?>
 
     <?php if ($show_bar){ ?>
-        <div class="info_bar">
+        <div class="d-flex  info_bar">
             <?php if (!empty($item['rating_widget'])){ ?>
-                <div class="bar_item bi_rating">
+                <div class="pr-2 bar_item bi_rating">
+                    <i class="fa fa-star"></i>
                     <?php echo $item['rating_widget']; ?>
                 </div>
             <?php } ?>
             <?php if ($fields['date_pub']['is_in_item']){ ?>
-                <div class="bar_item bi_date_pub" title="<?php html( $fields['date_pub']['title'] ); ?>">
+                <div class="pr-2 bar_item bi_date_pub" title="<?php html( $fields['date_pub']['title'] ); ?>">
+                    <i class="fa fa-calendar"></i>
                     <?php echo $fields['date_pub']['html']; ?>
                 </div>
             <?php } ?>
             <?php if (!$item['is_pub']){ ?>
-                <div class="bar_item bi_not_pub">
+                <div class="pr-2 bar_item bi_not_pub">
                     <?php echo LANG_CONTENT_NOT_IS_PUB; ?>
                 </div>
             <?php } ?>
             <?php if (!empty($ctype['options']['hits_on'])){ ?>
-                <div class="bar_item bi_hits" title="<?php echo LANG_HITS; ?>">
+                <div class="pr-2 bar_item bi_hits" title="<?php echo LANG_HITS; ?>">
+                    <i class="fa fa-eye"></i>
                     <?php echo $item['hits_count']; ?>
                 </div>
             <?php } ?>
             <?php if ($fields['user']['is_in_item']){ ?>
-                <div class="bar_item bi_user" title="<?php html( $fields['user']['title'] ); ?>">
+                <div class="pr-2 bar_item bi_user" title="<?php html( $fields['user']['title'] ); ?>">
+                    <i class="fa fa-user"></i>
                     <?php echo $fields['user']['html']; ?>
                 </div>
                 <?php if (!empty($item['folder_title'])){ ?>
-                    <div class="bar_item bi_folder">
+                    <div class="pr-2 bar_item bi_folder">
+                        <i class="fa fa-folder"></i>
                         <a href="<?php echo href_to('users', $item['user']['id'], array('content', $ctype['name'], $item['folder_id'])); ?>"><?php echo $item['folder_title']; ?></a>
                     </div>
                 <?php } ?>
             <?php } ?>
-            <div class="bar_item bi_share">
+            <div class="pr-2 bar_item bi_share">
                 <div class="share">
                     <script type="text/javascript" src="//yastatic.net/es5-shims/0.0.2/es5-shims.min.js" charset="utf-8" defer></script>
                     <script type="text/javascript" src="//yastatic.net/share2/share.js" charset="utf-8" defer></script>
@@ -159,7 +164,7 @@
                 </div>
             </div>
             <?php if (!$item['is_approved']){ ?>
-                <div class="bar_item bi_not_approved">
+                <div class="pr-2 bar_item bi_not_approved">
                     <?php echo LANG_CONTENT_NOT_APPROVED; ?>
                 </div>
             <?php } ?>

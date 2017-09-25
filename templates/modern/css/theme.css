@@ -33,4 +33,11 @@ blockquote {
 .page-notice {
   color: #868e96; }
 
+.field-title-left {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex; }
+  .field-title-left .title_left {
+    margin-right: 1rem; }
+
 /*# sourceMappingURL=../css/maps/theme.css.map */

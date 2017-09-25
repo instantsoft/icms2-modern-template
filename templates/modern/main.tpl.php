@@ -8,12 +8,13 @@
 
     <?php $this->addMainCSS("templates/{$this->name}/css/theme.css"); ?>
     <?php $this->addMainCSS("templates/{$this->name}/css/system.css"); ?>
-    <?php $this->addMainJS("templates/{$this->name}/js/jquery.js"); ?>
-    <?php $this->addMainJS("templates/{$this->name}/js/jquery-modal.js"); ?>
-    <?php $this->addMainJS("templates/{$this->name}/js/core.js"); ?>
-    <?php $this->addMainJS("templates/{$this->name}/js/modal.js"); ?>
+    <?php $this->addMainCSS("templates/default/css/theme-modal.css"); ?>
+    <?php $this->addMainJS("templates/default/js/jquery.js"); ?>
+    <?php $this->addMainJS("templates/default/js/jquery-modal.js"); ?>
+    <?php $this->addMainJS("templates/default/js/core.js"); ?>
+    <?php $this->addMainJS("templates/default/js/modal.js"); ?>
     <?php if (cmsUser::isLogged()){ ?>
-        <?php $this->addMainJS("templates/{$this->name}/js/messages.js"); ?>
+        <?php $this->addMainJS("templates/default/js/messages.js"); ?>
     <?php } ?>
     <?php $this->head(); ?>
     <meta name="csrf-token" content="<?php echo cmsForm::getCSRFToken(); ?>" />
@@ -154,9 +155,9 @@
             <div class="container mb-4">
                 <div class="widget_ajax_wrap" id="widget_pos_footer"><?php $this->widgets('footer'); ?></div>
             </div>
-            <div class="container">
-                <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
-                    <ul class="navbar-nav mr-auto">
+            <div class="container d-flex align-items-center bg-light">
+
+                    <ul class="nav mr-auto">
                         <li class="nav-item" id="copyright">
                             <span class="navbar-text px-lg-2">
                                 <a href="<?php echo $this->options['owner_url'] ? $this->options['owner_url'] : href_to_home(); ?>">
@@ -179,7 +180,6 @@
                         </li>
                     </ul>
                     <div class="widget_ajax_wrap" id="widget_pos_footer_nav"><?php $this->widgets('footer_nav', false, 'wrapper_plain'); ?></div>
-                </nav>
             </div>
         </footer>
     </div>
