@@ -39,7 +39,12 @@ module.exports = {
         //Тут мы укажем, за изменением каких файлов мы хотим наблюдать
         watch: {
             js: 'src/js/**/*.js',
-            style: ['src/sass/theme/**/*.scss', 'src/sass/theme.scss'],
+            style: [
+                'src/sass/ui/**/*.scss',
+                'src/sass/pages/**/*.scss',
+                'src/sass/widgets/**/*.scss',
+                'src/sass/layouts/**/*.scss',
+                'src/sass/theme.scss'],
             styleSystem: ['src/sass/vendors/**/*.scss', 'src/sass/system.scss'],
             styleControllers: 'src/src/sass/controllers/*.scss',
             styleConfig: 'src/sass/config/_variables.scss',

@@ -49,48 +49,29 @@ function html_pagebar($page, $perpage, $total, $base_uri=false, $query=array()){
 
     $html   = '';
 
-    $html .= '<div class="pagebar">';
+    $html .= '<nav class="d-flex flex-column align-items-center">';
+    $html .= '<ul class="pagination">';
 
-	if (($page > 1) || ($page < $pages)) {
-
-		$html .= '<span class="pagebar_nav">';
-
-		if ($page > 1){
-			$query['page'] = ($page-1);
-			$uri = ($query['page']==1 ? $base_uri['first'] : $base_uri['base']);
-			$sep = mb_strstr($uri, '?') ? '&' : '?';
-			if ($query['page'] == 1) { unset($query['page']); }
-			$html .= ' <a href="'. $uri . ($query ? $sep .http_build_query($query) : '') . $anchor . '" class="pagebar_page">&larr; '.LANG_PAGE_PREV.'</a> ';
-		} else {
-			$html .= ' <span class="pagebar_page disabled">&larr; '.LANG_PAGE_PREV.'</span> ';
-		}
-
-		if ($page < $pages){
-			$query['page'] = ($page+1);
-			$uri = ($query['page']==1 ? $base_uri['first'] : $base_uri['base']);
-			$sep = mb_strstr($uri, '?') ? '&' : '?';
-			if ($query['page'] == 1) { unset($query['page']); }
-			$html .= ' <a href="'. $uri . ($query ? $sep.http_build_query($query) : '') . $anchor . '" class="pagebar_page">'.LANG_PAGE_NEXT.' &rarr;</a> ';
-		} else {
-			$html .= ' <span class="pagebar_page disabled">'.LANG_PAGE_NEXT.' &rarr;</span> ';
-		}
-
-		$html .= '</span>';
-
-	}
+    if ($page > 1){
+        $query['page'] = ($page-1);
+        $uri = ($query['page']==1 ? $base_uri['first'] : $base_uri['base']);
+        $sep = mb_strstr($uri, '?') ? '&' : '?';
+        if ($query['page'] == 1) { unset($query['page']); }
+        $html .= ' <li class="page-item"><a href="'. $uri . ($query ? $sep .http_build_query($query) : '') . $anchor . '" class="page-link">&laquo; <span class="d-none d-sm-inline"> '.LANG_PAGE_PREV.'</span> </a></li> ';
+    } else {
+        $html .= ' <li class="page-item disabled"><span class="page-link">&laquo; <span class="d-none d-sm-inline">'.LANG_PAGE_PREV.'</span></span></li> ';
+    }
 
 	$span = 3;
 	if ($page - $span < 1) { $p_start = 1; } else { $p_start = $page - $span; }
 	if ($page + $span > $pages) { $p_end = $pages; } else { $p_end = $page + $span; }
-
-	$html .= '<span class="pagebar_pages">';
 
 	if ($page > $span+1){
         $query['page'] = 1;
         $uri = ($query['page']==1 ? $base_uri['first'] : $base_uri['base']);
         $sep = mb_strstr($uri, '?') ? '&' : '?';
         if ($query['page'] == 1) { unset($query['page']); }
-        $html .= ' <a href="'. $uri . ($query ? $sep.http_build_query($query) : '') . $anchor . '" class="pagebar_page">'.LANG_PAGE_FIRST.'</a> ';
+        $html .= ' <li class="page-item"><a href="'. $uri . ($query ? $sep.http_build_query($query) : '') . $anchor . '" class="page-link">'.LANG_PAGE_FIRST.'</a></li> ';
 	}
 
     for ($p=$p_start; $p<=$p_end; $p++){
@@ -99,9 +80,9 @@ function html_pagebar($page, $perpage, $total, $base_uri=false, $query=array()){
             $uri = ($query['page']==1 ? $base_uri['first'] : $base_uri['base']);
             $sep = mb_strstr($uri, '?') ? '&' : '?';
             if ($query['page'] == 1) { unset($query['page']); }
-            $html .= ' <a href="'. $uri . ($query ? $sep.http_build_query($query) : '') . $anchor . '" class="pagebar_page">'.$p.'</a> ';
+            $html .= ' <li class="page-item"><a href="'. $uri . ($query ? $sep.http_build_query($query) : '') . $anchor . '" class="page-link">'.$p.'</a></li> ';
         } else {
-            $html .= '<span class="pagebar_current">'.$p.'</span>';
+            $html .= '<li class="page-item active"><span class="page-link">'.$p.'</span></li>';
         }
     }
 
@@ -110,17 +91,28 @@ function html_pagebar($page, $perpage, $total, $base_uri=false, $query=array()){
         $uri = ($query['page']==1 ? $base_uri['first'] : $base_uri['base']);
         $sep = mb_strstr($uri, '?') ? '&' : '?';
         if ($query['page'] == 1) { unset($query['page']); }
-        $html .= ' <a href="'. $uri . ($query ? $sep.http_build_query($query) : '') . $anchor . '" class="pagebar_page">'.LANG_PAGE_LAST.'</a> ';
+        $html .= ' <li class="page-item"><a href="'. $uri . ($query ? $sep.http_build_query($query) : '') . $anchor . '" class="page-link">'.LANG_PAGE_LAST.'</a></li> ';
 	}
 
-	$html .= '</span>';
+
+    if ($page < $pages){
+        $query['page'] = ($page+1);
+        $uri = ($query['page']==1 ? $base_uri['first'] : $base_uri['base']);
+        $sep = mb_strstr($uri, '?') ? '&' : '?';
+        if ($query['page'] == 1) { unset($query['page']); }
+        $html .= ' <li class="page-item"><a href="'. $uri . ($query ? $sep.http_build_query($query) : '') . $anchor . '" class="page-link"><span class="d-none d-sm-inline">'.LANG_PAGE_NEXT.'</span> &raquo;</a></li> ';
+    } else {
+        $html .= ' <li class="page-item disabled"><span class="page-link"><span class="d-none d-sm-inline">'.LANG_PAGE_NEXT.'</span> &raquo;</span></li> ';
+    }
+
+    $html .= '</ul>';
 
     $from   = $page * $perpage - $perpage + 1;
     $to     = $page * $perpage; if ($to>$total) { $to = $total; }
 
-    $html  .= '<div class="pagebar_notice">'.sprintf(LANG_PAGES_SHOWN, $from, $to, $total).'</div>';
+    $html  .= '<div class="page-notice">'.sprintf(LANG_PAGES_SHOWN, $from, $to, $total).'</div>';
 
-    $html .= '</div>';
+    $html .= '</nav>';
 
 	return $html;
 
