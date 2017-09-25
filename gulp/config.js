@@ -7,6 +7,7 @@ module.exports = {
         //Тут мы укажем куда складывать готовые после сборки файлы
         build: {
             js: 'templates/' + template + '/js/',
+            jsTheme: 'templates/' + template + '/js/theme.js',
             style: 'templates/' + template + '/css/',
             styleControllers: 'templates/' + template + '/controllers/',
             img: 'templates/' + template + '/img/',
@@ -15,6 +16,19 @@ module.exports = {
         //Пути откуда брать исходники
         src: {
             js: 'src/js/*.js',
+            jsTheme: [
+                'bower_components/popper.js/dist/umd/popper.js',
+                'bower_components/bootstrap/js/dist/util.js',
+                'bower_components/bootstrap/js/dist/alert.js',
+                'bower_components/bootstrap/js/dist/button.js',
+                'bower_components/bootstrap/js/dist/carousel.js',
+                'bower_components/bootstrap/js/dist/collapse.js',
+                'bower_components/bootstrap/js/dist/dropdown.js',
+                'bower_components/bootstrap/js/dist/modal.js',
+                'bower_components/bootstrap/js/dist/scrollspy.js',
+                'bower_components/bootstrap/js/dist/tab.js',
+                'bower_components/bootstrap/js/dist/tooltip.js',
+                'bower_components/bootstrap/js/dist/popover.js'],
             style: 'src/sass/theme.scss',
             styleSystem: 'src/sass/system.scss',
             styleVendors: 'src/sass/vendors/*.scss',
