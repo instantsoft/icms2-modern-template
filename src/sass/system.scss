@@ -1,5 +1,7 @@
 @import 'config/variables';
+
+// compile font-awesome
+@import 'vendors/font-awesome/font-awesome';
+
 // compile bootstrap
 @import 'vendors/bootstrap/bootstrap';
-
-@import 'vendors/font-awesome/font-awesome';
