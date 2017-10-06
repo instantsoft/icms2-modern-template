@@ -6,8 +6,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <?php $this->addMainCSS("templates/{$this->name}/css/theme.css"); ?>
     <?php $this->addMainCSS("templates/{$this->name}/css/system.css"); ?>
+    <?php $this->addMainCSS("templates/{$this->name}/css/theme.css"); ?>
     <?php $this->addMainCSS("templates/default/css/theme-modal.css"); ?>
     <?php $this->addMainJS("templates/default/js/jquery.js"); ?>
     <?php $this->addMainJS("templates/default/js/jquery-modal.js"); ?>
@@ -80,6 +80,23 @@
                     <div class="widget_ajax_wrap mb-4" id="widget_pos_maintop_fullwidth_center"><?php $this->widgets('maintop_fullwidth_center'); ?></div>
                     <div class="widget_ajax_wrap mb-4" id="widget_pos_maintop_fullwidth_bottom"><?php $this->widgets('maintop_fullwidth_bottom'); ?></div>
                 </div>
+                <?php
+                $messages = cmsUser::getSessionMessages();
+                    if ($messages){
+                        ?>
+                        <div class="alert alert-secondary alert-dismissible fade show" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <?php
+                                foreach($messages as $message){
+                                    echo $message;
+                                }
+                            ?>
+                        </div>
+                        <?php
+                    }
+                ?>
                 <div class="row">
                 <?php
                     $is_left_aside = $this->hasWidgetsOn('left_top', 'left_center', 'left_bottom');
@@ -92,22 +109,6 @@
                         $section_class = 'col-lg-12';
                     }
                 ?>
-
-                <?php
-                    $messages = cmsUser::getSessionMessages();
-                    if ($messages){
-                        ?>
-                        <div class="sess_messages">
-                            <?php
-                                foreach($messages as $message){
-                                    echo $message;
-                                }
-                            ?>
-                        </div>
-                        <?php
-                    }
-                ?>
-
                 <section class="<?php echo $section_class; ?> mb-4">
 
                     <div class="widget_ajax_wrap mb-4" id="widget_pos_body_top"><?php $this->widgets('body_top'); ?></div>

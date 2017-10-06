@@ -40,4 +40,11 @@ blockquote {
   .field-title-left .title_left {
     margin-right: 1rem; }
 
+.ft_date select.form-control {
+  width: calc(44px + 1.5rem); }
+
+.ft_date .date-input {
+  width: calc(80px + 1.5rem);
+  display: inline-block; }
+
 /*# sourceMappingURL=../css/maps/theme.css.map */

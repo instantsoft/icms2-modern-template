@@ -4,3 +4,14 @@
     margin-right: 1rem;
   }
 }
+
+// Поле Дата
+.ft_date {
+  select.form-control {
+    width: calc(44px + #{$input-btn-padding-x*2});
+  }
+  .date-input {
+    width: calc(80px + #{$input-btn-padding-x*2});
+    display: inline-block;
+  }
+}

@@ -95,6 +95,7 @@
                         }
 
                         $classes = array(
+                            'form-group',
                             'field',
                             'ft_'.strtolower(substr(get_class($field), 5))
                         );
@@ -132,11 +133,11 @@
 
                         <?php if (!$field->is_hidden && !$field->getOption('is_hidden')) { ?>
 
-                            <?php if ($error){ ?><div class="error_text"><?php echo $error; ?></div><?php } ?>
-
                             <?php echo $field->getInput($value); ?>
 
-                            <?php if(!empty($field->hint)) { ?><div class="hint"><?php echo $field->hint; ?></div><?php } ?>
+                            <?php if ($error){ ?><div class="invalid-feedback d-block error_text"><?php echo $error; ?></div><?php } ?>
+
+                            <?php if(!empty($field->hint)) { ?><small id="<?php echo $id; ?>_Help" class="form-text text-muted"><?php echo $field->hint; ?></small><?php } ?>
 
                         <?php } else { ?>
 
