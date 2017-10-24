@@ -33,6 +33,9 @@ blockquote {
 .page-notice {
   color: #868e96; }
 
+.captcha_data {
+  margin-bottom: 1rem; }
+
 .field-title-left {
   display: -webkit-box;
   display: -ms-flexbox;
