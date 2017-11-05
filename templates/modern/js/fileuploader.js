@@ -485,19 +485,19 @@ qq.FileUploader = function(o){
         listElement: null,
 
         template: '<div class="qq-uploader">' +
-        '<div class="qq-upload-drop-area"><span>'+LANG_DROP_TO_UPLOAD+'</span></div>' +
-        '<div class="qq-upload-button">'+LANG_SELECT_UPLOAD+'</div>' +
-        '<ul class="qq-upload-list"></ul>' +
-        '</div>',
+                '<div class="qq-upload-drop-area"><span>'+LANG_DROP_TO_UPLOAD+'</span></div>' +
+                '<div class="qq-upload-button btn btn-secondary">'+LANG_SELECT_UPLOAD+'</div>' +
+                '<ul class="qq-upload-list list-group my-3"></ul>' +
+             '</div>',
 
         // template for one item in file list
-        fileTemplate: '<li>' +
-        '<span class="qq-upload-file"></span>' +
-        '<span class="qq-upload-spinner"></span>' +
-        '<span class="qq-upload-size"></span>' +
-        '<a class="qq-upload-cancel" href="#">'+LANG_CANCEL+'</a>' +
-        '<span class="qq-upload-failed-text">'+LANG_ERROR+'</span>' +
-        '</li>',
+        fileTemplate: '<li class="list-group-item">' +
+                '<span class="qq-upload-file"></span>' +
+                '<span class="qq-upload-spinner"><i class="fa fa-spinner fa-spin"></i></span>' +
+                '<span class="qq-upload-size"></span>' +
+                '<a class="qq-upload-cancel" href="#">'+LANG_CANCEL+'</a>' +
+                '<span class="qq-upload-failed-text">'+LANG_ERROR+'</span>' +
+            '</li>',
 
         classes: {
             // used to get elements from templates
@@ -575,7 +575,7 @@ qq.extend(qq.FileUploader.prototype, {
         qq.attach(document, 'dragenter', function(e){
             if (!dz._isValidFileDrag(e)) return;
 
-            dropArea.style.display = 'block';
+            dropArea.style.display = 'flex';
         });
         qq.attach(document, 'dragleave', function(e){
             if (!dz._isValidFileDrag(e)) return;
@@ -1131,9 +1131,9 @@ qq.UploadHandlerXhr.isSupported = function(){
     input.type = 'file';
 
     return (
-    'multiple' in input &&
-    typeof File != "undefined" &&
-    typeof (new XMLHttpRequest()).upload != "undefined" );
+        'multiple' in input &&
+        typeof File != "undefined" &&
+        typeof (new XMLHttpRequest()).upload != "undefined" );
 };
 
 // @inherits qq.UploadHandlerAbstract

@@ -16,7 +16,7 @@ icms.images = (function ($) {
 
     this._showButton = function(field_name){
         widget = $('#widget_image_'+field_name);
-        $('.upload', widget).show();
+        $('.upload', widget).addClass('upload-full').show();
         $('.loading', widget).hide();
     };
 

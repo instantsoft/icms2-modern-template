@@ -38,7 +38,7 @@
         <a href="javascript:" class="btn btn-secondary"><i class="fa fa-trash-o"></i> <?php echo LANG_DELETE; ?></a>
     </div>
 
-    <div class="d-flex align-items-center">
+    <div class="d-flex align-items-center flex-wrap">
         <div class="upload pr-2">
             <div id="file-uploader-<?php echo $dom_id; ?>"></div>
         </div>

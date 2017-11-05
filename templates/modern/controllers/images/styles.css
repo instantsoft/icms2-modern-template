@@ -34,4 +34,9 @@
 .ui-sortable-helper {
   background-color: #FFF; }
 
+.upload-full {
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 100%;
+  flex: 1 1 100%; }
+
 /*# sourceMappingURL=styles.css.map */
