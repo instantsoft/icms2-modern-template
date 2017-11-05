@@ -4,6 +4,7 @@ upload/
 update/
 templates/default/
 system/
+!src/sass/vendors/system/
 static/
 license.ru.txt
 license.en.txt

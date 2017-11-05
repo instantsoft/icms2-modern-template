@@ -6,9 +6,11 @@ gulp.task('browser-sync', ['watch'], function () {
     browserSync.init({
         proxy: config.server,
         logConnections: true,
-        notify: false,
+        notify: true,
         reloadDebounce: 500
     });
+    gulp.watch(config.path.browser.style).on("change", browserSync.reload);
+    gulp.watch(config.path.browser.styleControllers).on("change", browserSync.reload);
     gulp.watch(config.path.browser.js).on("change", browserSync.reload);
     gulp.watch(config.path.browser.php).on('change', browserSync.reload);
 });

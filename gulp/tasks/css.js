@@ -54,7 +54,6 @@ gulp.task('style.min:build', function () {
         .pipe(plugin.duration('style.min:build time'))
         .pipe(plugin.sourcemaps.write('../css/maps'))
         .pipe(gulp.dest(config.path.build.style))
-        .pipe(browserSync.stream())
 });
 
 gulp.task('styleSystem.min:build', function () {
@@ -74,7 +73,6 @@ gulp.task('styleSystem.min:build', function () {
         .pipe(plugin.debug({title: 'style.min:build'}))
         .pipe(plugin.duration('style.min:build time'))
         .pipe(gulp.dest(config.path.build.style))
-        .pipe(browserSync.stream())
 });
 
 gulp.task('styleControllers:build', function () {
@@ -96,7 +94,6 @@ gulp.task('styleControllers:build', function () {
         .pipe(plugin.debug({title: 'styleContr:build'}))
         .pipe(plugin.duration('styleContr:build time'))
         .pipe(gulp.dest(config.path.build.styleControllers))
-        .pipe(browserSync.stream())
 });
 
 gulp.task('styleVendors:build', function () {
@@ -110,7 +107,10 @@ gulp.task('styleVendors:build', function () {
             cascade: false
         }))
         .pipe(plugin.pxtorem())
-        .pipe(plugin.sourcemaps.write('../css/maps'))
+        .pipe(plugin.rename(function (path) {
+            path.basename = path.dirname;
+            path.dirname = "/";
+        }))
+        .pipe(plugin.sourcemaps.write('/maps'))
         .pipe(gulp.dest(config.path.build.style))
-        .pipe(browserSync.stream())
 });
