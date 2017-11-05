@@ -1,5 +1,5 @@
-var server ='icms2-modern-template', // название локального сайта
-    template ='modern'; // название шаблона. в который скидывать файлы
+var server = 'icms2-modern-template', // Название локального сайта. Перед началом запуска проекта, локальный сайт должен быть включен
+    template = 'modern'; // название шаблона. в который скидывать файлы
 
 module.exports = {
     server: server,
@@ -46,7 +46,7 @@ module.exports = {
                 'src/sass/layouts/**/*.scss',
                 'src/sass/theme.scss'],
             styleSystem: ['src/sass/vendors/**/*.scss', 'src/sass/system.scss'],
-            styleControllers: 'src/src/sass/controllers/*.scss',
+            styleControllers: 'src/sass/controllers/*.scss',
             styleConfig: 'src/sass/config/_variables.scss',
             img: 'src/images/**/*.*',
             fonts: 'src/fonts/**/*.*'

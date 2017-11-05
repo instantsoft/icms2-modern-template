@@ -1,0 +1,54 @@
+/* Ajax Uploader ============================================================ */
+.qq-uploader {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.qq-upload-drop-area {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  background: $green;
+  line-height: $input-btn-line-height;
+  text-align: center;
+  color: $white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  span {
+    font-size: 14px;
+  }
+}
+
+.upload .qq-upload-drop-area span {
+  font-size: 12px;
+}
+
+.qq-upload-drop-area-active {
+  background: $blue;
+}
+
+.qq-upload-file, .qq-upload-spinner, .qq-upload-size, .qq-upload-cancel, .qq-upload-failed-text {
+  margin-right: 10px;
+}
+
+.qq-upload-list:empty {
+  display: none;
+}
+
+.qq-upload-size, .qq-upload-cancel {
+  font-size: 12px;
+}
+
+.qq-upload-failed-text {
+  display: none;
+  color: $red;
+}
+
+.qq-upload-fail .qq-upload-failed-text {
+  display: inline;
+}
