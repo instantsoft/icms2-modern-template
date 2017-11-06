@@ -1,0 +1,366 @@
+@import '../../../config/import';
+
+.chosen-container {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  user-select: none;
+  .chosen-drop {
+    position: absolute;
+    top: 100%;
+    left: -9999px;
+    z-index: 1010;
+    width: 100%;
+    padding: $dropdown-padding-y 0;
+    margin: $dropdown-spacer 0 0; // override default ul
+    background-color: $dropdown-bg;
+    background-clip: padding-box;
+    border: $dropdown-border-width solid $dropdown-border-color;
+    @include border-radius($border-radius);
+    @include box-shadow($dropdown-box-shadow);
+  }
+  &.chosen-with-drop .chosen-drop {
+    left: 0;
+  }
+  a {
+    cursor: pointer;
+  }
+  .search-choice, .chosen-single {
+    .group-name{
+      margin-right: 4px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      font-weight: normal;
+      color: $gray-300;
+      &:after {
+        content: ":";
+        padding-left: 2px;
+
+      }
+    }
+  }
+}
+
+/* @end */
+/* @group Single Chosen */
+
+.chosen-single{
+  display: flex;
+  align-items: center;
+  font-weight: $btn-font-weight;
+  white-space: nowrap;
+  vertical-align: middle;
+  user-select: none;
+  border: $input-btn-border-width solid transparent;
+  @include button-size($input-btn-padding-y, $input-btn-padding-x, $font-size-base, $input-btn-line-height, $btn-border-radius);
+  @include transition($btn-transition);
+  position: relative;
+  overflow: hidden;
+  @include button-variant($gray-600, $gray-600);
+
+  &:not([href]):not([tabindex]) {
+    color: $white !important;
+  }
+  span {
+    display: block;
+    margin-right: auto;
+    overflow: hidden;
+    //margin-right: 26px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+.chosen-container-single {
+  .chosen-single div b {
+    margin-left: 5px;
+    margin-top: 4px;
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: $caret-width solid;
+    border-right: $caret-width solid transparent;
+    border-left: $caret-width solid transparent;
+  }
+  .chosen-search {
+    position: relative;
+    z-index: 1010;
+    margin: 0;
+    padding: 3px 4px;
+    white-space: nowrap;
+    &:after {
+      display: inline-block;
+      font-family: FontAwesome; // shortening font declaration
+      text-rendering: auto; // optimizelegibility throws things off #1094
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      content: $fa-var-search;
+      position: absolute;
+      right: 4px;
+      line-height: $input-btn-line-height;
+      padding: $input-btn-padding-y-sm $input-btn-padding-x-sm;
+      color: $input-color;
+      border: $input-btn-border-width solid transparent;
+    }
+    input[type="text"] {
+      margin: 1px 0;
+      width: 100%;
+      padding: $input-btn-padding-y-sm ($input-btn-padding-x-sm*3) $input-btn-padding-y-sm $input-btn-padding-x-sm;
+      font-size: $font-size-base;
+      line-height: $input-btn-line-height;
+      color: $input-color;
+      background-color: $input-bg;
+      // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214.
+      background-image: none;
+      background-clip: padding-box;
+      border: $input-btn-border-width solid $input-border-color;
+      @include transition($input-transition);
+      @include form-control-focus();
+
+      // Placeholder
+      &::placeholder {
+        color: $input-placeholder-color;
+        // Override Firefox's unusual default opacity; see https://github.com/twbs/bootstrap/pull/11526.
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.chosen-container-single.chosen-container-single-nosearch .chosen-search {
+  position: absolute;
+  left: -9999px;
+}
+/* @end */
+/* @group Results */
+.chosen-container {
+  .chosen-results {
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
+    margin: 0;
+    padding: 0;
+    max-height: 180px;
+    -webkit-overflow-scrolling: touch;
+    li {
+      display: none;
+      margin: 0;
+      padding: $dropdown-item-padding-y $dropdown-item-padding-x;
+      list-style: none;
+      word-wrap: break-word;
+      -webkit-touch-callout: none;
+      &.active-result {
+        display: list-item;
+        cursor: pointer;
+      }
+      &.disabled-result {
+        display: list-item;
+        color: $dropdown-link-disabled-color;
+        cursor: default;
+      }
+      &.highlighted {
+        color: $dropdown-link-hover-color;
+        background-color: $dropdown-link-hover-bg;
+      }
+      &.no-results {
+        color: $text-muted;
+        display: list-item;
+        background: $gray-100;
+      }
+      &.group-result {
+        display: list-item;
+        font-weight: bold;
+        cursor: default;
+        background-color: darken($gray-100, 2%);
+      }
+      em {
+        font-style: normal;
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+/* @end */
+/* @group Multi Chosen */
+.chosen-container-multi {
+  .chosen-choices {
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+    width: 100%;
+    height: auto;
+    cursor: text;
+    padding: $input-btn-padding-y-sm $input-btn-padding-x-sm;
+    font-size: $font-size-base;
+    line-height: $input-btn-line-height;
+    color: $input-color;
+    background-color: $input-bg;
+    // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214.
+    background-image: none;
+    background-clip: padding-box;
+    border: $input-btn-border-width solid $input-border-color;
+    border-radius: $input-border-radius;
+    @include transition($input-transition);
+    li {
+      float: left;
+      list-style: none;
+      &.search-field {
+        margin: 0;
+        padding: 0;
+        white-space: nowrap;
+      }
+      &.search-choice {
+        position: relative;
+        display: flex;
+        align-items: center;
+        margin: 3px 5px 3px 0;
+        padding: 3px 5px 3px 5px;
+        border: $input-btn-border-width solid $input-border-color;
+        max-width: 100%;
+        border-radius: 2px;
+        background-color: $gray-100;
+        box-shadow: 0 0 2px white inset, 0 1px 0 rgba(0, 0, 0, 0.05);
+        line-height: 13px;
+        cursor: default;
+        transition: all 0.3s;
+        &:hover {
+          background-color: $gray-200;
+        }
+        span {
+          word-wrap: break-word;
+        }
+      }
+      &.search-choice-disabled {
+        background-color: $gray-200;
+      }
+      &.search-choice-focus {
+        background: $gray-200;
+      }
+      .search-choice-close {
+        display: block;
+        margin-left: 4px;
+        color: $input-color;
+        &:after{
+        }
+        &:hover {
+
+        }
+      }
+    }
+  }
+  .chosen-drop .result-selected {
+    display: list-item;
+    color: $dropdown-link-disabled-color;
+    cursor: default;
+  }
+}
+.search-choice-close {
+  &:after{
+    display: inline-block;
+    font-family: FontAwesome; // shortening font declaration
+    text-rendering: auto; // optimizelegibility throws things off #1094
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    content: $fa-var-times;
+    font-size: 12px;
+  }
+}
+
+.chosen-container-multi .chosen-choices li.search-field input[type="text"] {
+  margin: 1px 0;
+  padding: 0;
+  height: 26px;
+  outline: 0;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none;
+  color: #999;
+  font-size: 100%;
+  font-family: sans-serif;
+  line-height: normal;
+  border-radius: 0;
+  width: 25px;
+}
+
+/* @end */
+/* @group Active  */
+.chosen-container-active .chosen-single {
+  box-shadow: 0 0 0 3px rgba(theme-color("secondary"), .5);
+}
+
+.chosen-container-active .chosen-choices {
+  background-color: $input-focus-bg;
+  border-color: $input-focus-border-color;
+  @include box-shadow($input-focus-box-shadow);
+}
+.chosen-container-active .chosen-choices li.search-field input[type="text"] {
+  color: $input-focus-color;
+}
+/* @end */
+/* @group Disabled Support */
+.chosen-disabled {
+  opacity: 0.5 !important;
+  cursor: default;
+}
+.chosen-disabled .chosen-single {
+  cursor: default;
+}
+.chosen-disabled .chosen-choices .search-choice .search-choice-close {
+  cursor: default;
+}
+/* @end */
+/* @group Right to Left */
+.chosen-rtl {
+  text-align: right;
+}
+
+.chosen-rtl {
+  .chosen-single {
+    overflow: visible;
+    flex-direction: row-reverse;
+    span {
+      margin-right: 0;
+      margin-left: auto;
+      direction: rtl;
+    }
+    div b {
+      margin-right: 5px;
+      margin-left: 0;
+    }
+  }
+  .chosen-choices {
+    li {
+      float: right;
+      &.search-field input[type="text"] {
+        direction: rtl;
+      }
+      &.search-choice {
+        flex-direction: row-reverse;
+        .search-choice-close {
+          margin-left: 0;
+          margin-right: 4px;
+        }
+      }
+    }
+  }
+}
+
+
+.chosen-rtl.chosen-container-single-nosearch .chosen-search,
+.chosen-rtl .chosen-drop {
+  left: 9999px;
+}
+
+.chosen-rtl .chosen-search {
+  &:after {
+    left: 4px;
+    right: auto;
+  }
+  input[type="text"] {
+    padding-left: 26px;
+    direction: rtl;
+
+  }
+}

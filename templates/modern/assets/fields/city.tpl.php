@@ -6,7 +6,7 @@
 
     <?php
     $this->addJSFromContext('templates/default/js/jquery-chosen.js');
-    $this->addCSSFromContext('templates/default/css/jquery-chosen.css');
+    $this->addCSSFromContext('templates/modern/css/jquery-chosen.css');
     ?>
 
     <div class="location_list location_group_<?php echo $field->data['location_group']; ?>">
