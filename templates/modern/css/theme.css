@@ -101,4 +101,7 @@ blockquote {
   width: calc(80px + 1.5rem);
   display: inline-block; }
 
+.tabs-menu > select {
+  display: none; }
+
 /*# sourceMappingURL=../css/maps/theme.css.map */
