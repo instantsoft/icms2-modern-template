@@ -41,7 +41,7 @@
 }
 
 .qq-upload-size, .qq-upload-cancel {
-  font-size: 12px;
+  font-size: $font-size-sm;
 }
 
 .qq-upload-failed-text {
@@ -51,4 +51,36 @@
 
 .qq-upload-fail .qq-upload-failed-text {
   display: inline;
+}
+
+/* Footer SQL Debug ======================================================== */
+.queries_wrap {
+  .query {
+    padding:  $input-btn-padding-y $input-btn-padding-x;
+    border: 1px solid $input-border-color;
+    margin-bottom: $input-btn-padding-y;
+    .src {
+      font-size: $font-size-sm;
+      color: $text-muted;
+    }
+    .debug_data{
+
+    }
+    .query_time {
+      font-size: $font-size-sm;
+      color: $text-muted;
+    }
+    .red_query {
+      color: $red;
+    }
+    .green_query {
+      color: $green;
+    }
+  }
+}
+
+
+// nav
+.content_datasets {
+  margin-bottom: 1rem;
 }

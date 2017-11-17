@@ -5,13 +5,39 @@
   }
 }
 
-// Поле Дата
+// date
 .ft_date {
   select.form-control {
     width: calc(44px + #{$input-btn-padding-x*2});
   }
+  .value {
+    display: flex;
+    align-items: center;
+    .date-input {
+      margin-left: .5rem;
+      margin-right: .5rem;
+    }
+  }
   .date-input {
     width: calc(80px + #{$input-btn-padding-x*2});
-    display: inline-block;
+  }
+  .hasDatepicker {
+    margin-right: .5rem;
+  }
+}
+
+// number
+.ft_age,
+.ft_number {
+  .value {
+    display: flex;
+    align-items: center;
+    .input-small {
+      margin-left: .5rem;
+      margin-right: .5rem;
+    }
+  }
+  .input-small {
+    width: calc(80px + #{$input-btn-padding-x*2});
   }
 }

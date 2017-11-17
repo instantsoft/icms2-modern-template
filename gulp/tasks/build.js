@@ -1,9 +1,9 @@
 var gulp = require('gulp');
 
 gulp.task('build', [
-    'js:build',
-    'jsTheme:build',
-    'jsTheme.min:build',
+    'jsSeparate:build',
+    'jsConcat:build',
+    'jsConcat.min:build',
     'style:build',
     'style.min:build',
     'styleSystem:build',

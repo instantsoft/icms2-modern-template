@@ -293,7 +293,7 @@
 .chosen-container-active .chosen-choices {
   background-color: $input-focus-bg;
   border-color: $input-focus-border-color;
-  @include box-shadow($input-focus-box-shadow);
+  @include box-shadow($input-btn-focus-box-shadow);
 }
 .chosen-container-active .chosen-choices li.search-field input[type="text"] {
   color: $input-focus-color;

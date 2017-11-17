@@ -1,7 +1,4 @@
-@import "vendors/system/bootstrap/functions";
-@import 'config/variables';
-@import 'vendors/system/bootstrap/mixins';
-@import 'vendors/system/bootstrap/variables';
+@import "config/import";
 
 // ui
 @import 'ui/typografy';
@@ -11,6 +8,7 @@
 @import 'ui/fonts';
 @import 'ui/error';
 @import 'ui/bootstrap';
+@import 'ui/rewrite';
 
 // layouts
 @import 'layouts/controllers';

@@ -33,7 +33,6 @@
         <?php } ?>
     </div>
 
-
     <div class="loading block" style="display:none">
         <?php echo LANG_LOADING; ?>
     </div>

@@ -7,7 +7,6 @@ module.exports = {
         //Тут мы укажем куда складывать готовые после сборки файлы
         build: {
             js: 'templates/' + template + '/js/',
-            jsTheme: 'templates/' + template + '/js/theme.js',
             style: 'templates/' + template + '/css/',
             styleControllers: 'templates/' + template + '/controllers/',
             img: 'templates/' + template + '/img/',
@@ -15,20 +14,21 @@ module.exports = {
         },
         //Пути откуда брать исходники
         src: {
-            js: 'src/js/*.js',
-            jsTheme: [
-                'bower_components/popper.js/dist/umd/popper.js',
-                'bower_components/bootstrap/js/dist/util.js',
-                'bower_components/bootstrap/js/dist/alert.js',
-                'bower_components/bootstrap/js/dist/button.js',
-                'bower_components/bootstrap/js/dist/carousel.js',
-                'bower_components/bootstrap/js/dist/collapse.js',
-                'bower_components/bootstrap/js/dist/dropdown.js',
-                'bower_components/bootstrap/js/dist/modal.js',
-                'bower_components/bootstrap/js/dist/scrollspy.js',
-                'bower_components/bootstrap/js/dist/tab.js',
-                'bower_components/bootstrap/js/dist/tooltip.js',
-                'bower_components/bootstrap/js/dist/popover.js'],
+            jsSeparate: 'src/js/separate/*.js',
+            jsConcat: [
+                'node_modules/popper.js/dist/umd/popper.min.js',
+                'node_modules/bootstrap/js/dist/util.js',
+                'node_modules/bootstrap/js/dist/alert.js',
+                'node_modules/bootstrap/js/dist/button.js',
+                'node_modules/bootstrap/js/dist/carousel.js',
+                'node_modules/bootstrap/js/dist/collapse.js',
+                'node_modules/bootstrap/js/dist/dropdown.js',
+                'node_modules/bootstrap/js/dist/modal.js',
+                'node_modules/bootstrap/js/dist/scrollspy.js',
+                'node_modules/bootstrap/js/dist/tab.js',
+                'node_modules/bootstrap/js/dist/tooltip.js',
+                'node_modules/bootstrap/js/dist/popover.js',
+                'src/js/concat/*.js'],
             style: 'src/sass/theme.scss',
             styleSystem: 'src/sass/system.scss', // Библиотеки подключаемые на каждой странице, объединяются в общий файл
             styleVendors:'src/sass/vendors/separate/**/*.*', // Библиотеки подключаемые на определенных страницах, каждая библиотека выводится отдельно
@@ -60,6 +60,12 @@ module.exports = {
             style: 'templates/' + template + '/css/**/*.css',
             styleControllers: 'templates/' + template + '/controllers/**/*.css',
             fonts: 'templates/' + template + '/fonts/**/*.*'
+        },
+        library_src: {
+            bootstrap:   'node_modules/bootstrap/scss/**/*.*'
+        },
+        library_build: {
+            bootstrap: 'src/sass/vendors/system/bootstrap/'
         },
         clean: {
             js: 'templates/' + template + '/js/**/*.*',

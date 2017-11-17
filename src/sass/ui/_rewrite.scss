@@ -1,0 +1,12 @@
+.markItUpContainer {
+  .markItUpEditor {
+    font-size: $font-size-base;
+    padding: $input-btn-padding-y $input-btn-padding-x;
+    line-height: $line-height-base;
+    margin-bottom: 1rem;
+  }
+}
+.markItUp a:link {
+  width: 28px;
+  height: 28px;
+}

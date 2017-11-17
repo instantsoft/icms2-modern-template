@@ -37,7 +37,7 @@ blockquote {
   height: 100%;
   z-index: 2;
   background: #28a745;
-  line-height: 1.25;
+  line-height: 1.5;
   text-align: center;
   color: #fff;
   display: -webkit-box;
@@ -65,7 +65,7 @@ blockquote {
   display: none; }
 
 .qq-upload-size, .qq-upload-cancel {
-  font-size: 0.75rem; }
+  font-size: 0.875rem; }
 
 .qq-upload-failed-text {
   display: none;
@@ -73,6 +73,25 @@ blockquote {
 
 .qq-upload-fail .qq-upload-failed-text {
   display: inline; }
+
+/* Footer SQL Debug ======================================================== */
+.queries_wrap .query {
+  padding: 0.375rem 0.75rem;
+  border: 1px solid #ced4da;
+  margin-bottom: 0.375rem; }
+  .queries_wrap .query .src {
+    font-size: 0.875rem;
+    color: #868e96; }
+  .queries_wrap .query .query_time {
+    font-size: 0.875rem;
+    color: #868e96; }
+  .queries_wrap .query .red_query {
+    color: #dc3545; }
+  .queries_wrap .query .green_query {
+    color: #28a745; }
+
+.content_datasets {
+  margin-bottom: 1rem; }
 
 .btn:hover {
   cursor: pointer; }
@@ -84,8 +103,38 @@ blockquote {
 .page-notice {
   color: #868e96; }
 
+.markItUpContainer .markItUpEditor {
+  font-size: 1rem;
+  padding: 0.375rem 0.75rem;
+  line-height: 1.5;
+  margin-bottom: 1rem; }
+
+.markItUp a:link {
+  width: 28px;
+  height: 28px; }
+
 .captcha_data {
   margin-bottom: 1rem; }
+
+.page-header-rss {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: baseline;
+  -ms-flex-align: baseline;
+  align-items: baseline; }
+  .page-header-rss .content_list_rss_icon {
+    margin-left: auto; }
+
+.comment .info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex; }
+  .comment .info .name {
+    margin-right: 0.5rem; }
+  .comment .info .date {
+    color: #868e96;
+    margin-right: 0.5rem; }
 
 .field-title-left {
   display: -webkit-box;
@@ -97,9 +146,39 @@ blockquote {
 .ft_date select.form-control {
   width: calc(44px + 1.5rem); }
 
+.ft_date .value {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center; }
+  .ft_date .value .date-input {
+    margin-left: .5rem;
+    margin-right: .5rem; }
+
 .ft_date .date-input {
-  width: calc(80px + 1.5rem);
-  display: inline-block; }
+  width: calc(80px + 1.5rem); }
+
+.ft_date .hasDatepicker {
+  margin-right: .5rem; }
+
+.ft_age .value,
+.ft_number .value {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center; }
+  .ft_age .value .input-small,
+  .ft_number .value .input-small {
+    margin-left: .5rem;
+    margin-right: .5rem; }
+
+.ft_age .input-small,
+.ft_number .input-small {
+  width: calc(80px + 1.5rem); }
 
 .tabs-menu > select {
   display: none; }

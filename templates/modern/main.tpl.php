@@ -10,6 +10,7 @@
     <?php $this->addMainCSS("templates/{$this->name}/css/theme.css"); ?>
     <?php $this->addMainCSS("templates/default/css/theme-modal.css"); ?>
     <?php $this->addMainJS("templates/default/js/jquery.js"); ?>
+    <?php $this->addMainJS("templates/{$this->name}/js/theme.js"); ?>
     <?php $this->addMainJS("templates/default/js/jquery-modal.js"); ?>
     <?php $this->addMainJS("templates/default/js/core.js"); ?>
     <?php $this->addMainJS("templates/default/js/modal.js"); ?>
@@ -75,6 +76,18 @@
 
         <div id="body">
             <div class="container">
+                <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
+                    Tooltip on top
+                </button>
+                <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="Tooltip on right">
+                    Tooltip on right
+                </button>
+                <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">
+                    Tooltip on bottom
+                </button>
+                <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="left" title="Tooltip on left">
+                    Tooltip on left
+                </button>
                 <div>
                     <div class="widget_ajax_wrap mb-4" id="widget_pos_maintop_fullwidth_top"><?php $this->widgets('maintop_fullwidth_top'); ?></div>
                     <div class="widget_ajax_wrap mb-4" id="widget_pos_maintop_fullwidth_center"><?php $this->widgets('maintop_fullwidth_center'); ?></div>
@@ -172,7 +185,7 @@
                                 <?php echo LANG_POWERED_BY_INSTANTCMS; ?>
                                 <?php if ($config->debug && cmsUser::isAdmin()) { ?>
                                     <span class="item">
-                                        <a href="#debug_block" title="<?php echo LANG_DEBUG; ?>" class="ajax-modal"><?php echo LANG_DEBUG; ?></a>
+                                        <a href="#debug_widget" title="<?php echo LANG_DEBUG; ?>" data-toggle="modal"><?php echo LANG_DEBUG; ?></a>
                                     </span>
                                     <span class="item">Time: <?php echo cmsDebugging::getTime('cms', 4); ?> s</span>
                                     <span class="item">Mem: <?php echo round(memory_get_usage(true) / 1024 / 1024, 2); ?> Mb</span>

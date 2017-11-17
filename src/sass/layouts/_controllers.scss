@@ -1,3 +1,26 @@
 .captcha_data {
   margin-bottom: $form-group-margin-bottom;
 }
+.page-header-rss {
+  display: flex;
+  align-items: baseline;
+  h1 {
+    //margin-bottom: 0;
+  }
+  .content_list_rss_icon  {
+    margin-left: auto;
+  }
+}
+// comments
+.comment {
+  .info {
+    display: flex;
+    .name {
+      margin-right: 0.5rem;
+    }
+    .date {
+      color: $text-muted;
+      margin-right: 0.5rem;
+    }
+  }
+}

@@ -2,7 +2,7 @@ var gulp = require('gulp');
 var config = require('../config.js');
 
 gulp.task('watch', function () {
-    gulp.watch(config.path.watch.js, ['js:build']);
+    gulp.watch(config.path.watch.js, ['jsSeparate:build', 'jsConcat:build', 'jsConcat.min:build']);
     gulp.watch(config.path.watch.style, ['style:build', 'style.min:build']);
     gulp.watch(config.path.watch.styleSystem, ['styleSystem:build', 'styleSystem.min:build']);
     gulp.watch(config.path.watch.styleVendors, ['styleVendors:build']);

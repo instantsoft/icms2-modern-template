@@ -17,29 +17,25 @@
     <?php $this->renderChild('profile_header', array('profile'=>$profile, 'tabs'=>$tabs)); ?>
 </div>
 
-<div id="user_profile">
+<div id="user_profile" class="row">
 
-    <div id="left_column" class="column">
+    <div id="left_column" class="user-fw-col">
 
         <?php if ($fields['avatar']['is_in_item']){ ?>
-            <div id="avatar" class="block">
+            <div id="avatar" class="card mb-3 rounded-0">
                 <?php echo html_avatar_image($profile['avatar'], $fields['avatar']['options']['size_full'], $profile['nickname']); ?>
             </div>
         <?php } ?>
 
         <?php if ($content_counts) { ?>
-            <div class="block">
-                <ul class="content_counts">
-                    <?php foreach($content_counts as $ctype_name=>$count){ ?>
-                        <?php if (!$count['is_in_list']) { continue; } ?>
-                        <li>
-                            <a href="<?php echo href_to('users', $profile['id'], array('content', $ctype_name)); ?>">
-                                <?php html($count['title']); ?>
-                                <span class="counter"><?php html($count['count']); ?></span>
-                            </a>
-                        </li>
-                    <?php } ?>
-                </ul>
+            <div class="list-group mb-3">
+                <?php foreach($content_counts as $ctype_name=>$count){ ?>
+                    <?php if (!$count['is_in_list']) { continue; } ?>
+                    <a class="list-group-item list-group-item-action" href="<?php echo href_to('users', $profile['id'], array('content', $ctype_name)); ?>">
+                        <?php html($count['title']); ?>
+                        <span class="counter"><?php html($count['count']); ?></span>
+                    </a>
+                <?php } ?>
             </div>
         <?php } ?>
 
@@ -65,32 +61,32 @@
 
         <div class="block">
 
-            <ul class="details">
+            <ul class="list-group">
 
-                <li>
+                <li class="list-group-item">
                     <strong><?php echo LANG_RATING; ?>:</strong>
                     <span class="<?php echo html_signed_class($profile['rating']); ?>"><?php echo $profile['rating']; ?></span>
                 </li>
 
-                <li>
+                <li class="list-group-item">
                     <strong><?php echo LANG_USERS_PROFILE_LOGDATE; ?>:</strong>
                     <?php echo $profile['is_online'] ? '<span class="online">'.LANG_ONLINE.'</span>' : string_date_age_max($profile['date_log'], true); ?>
                 </li>
 
-                <li>
+                <li class="list-group-item">
                     <strong><?php echo LANG_USERS_PROFILE_REGDATE; ?>:</strong>
                     <?php echo string_date_age_max($profile['date_reg'], true); ?>
                 </li>
 
                 <?php if ($profile['inviter_id']) { ?>
-                <li>
+                <li class="list-group-item">
                     <strong><?php echo LANG_USERS_PROFILE_INVITED_BY; ?>:</strong>
                     <a href="<?php echo href_to('users', $profile['inviter_id']); ?>"><?php html($profile['inviter_nickname']); ?></a>
                 </li>
                 <?php } ?>
 
                 <?php if ($user->is_admin) { ?>
-                <li>
+                <li class="list-group-item">
                     <strong><?php echo LANG_USERS_PROFILE_LAST_IP; ?>:</strong>
                     <?php html($profile['ip']); ?>
                 </li>
@@ -102,7 +98,7 @@
 
     </div>
 
-    <div id="right_column" class="column">
+    <div id="right_column" class="col">
 
             <div id="information" class="content_item block">
 
