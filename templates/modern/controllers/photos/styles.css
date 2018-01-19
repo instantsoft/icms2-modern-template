@@ -1,0 +1,243 @@
+.navbar-filter {
+  margin-bottom: 1rem; }
+  .navbar-filter .navbar-nav {
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap; }
+  .navbar-filter .nav-link {
+    cursor: pointer; }
+  .navbar-filter .filter-size-params {
+    padding: .5rem 1rem;
+    width: 14rem; }
+
+.album-photos-wrap {
+  overflow: hidden;
+  margin: 0 -.25rem;
+  position: relative; }
+  .album-photos-wrap .photo {
+    float: left;
+    margin: .25rem;
+    position: relative;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    overflow: hidden; }
+    .album-photos-wrap .photo.unpublished img {
+      -webkit-filter: blur(5px) grayscale(100%);
+      filter: blur(5px) grayscale(100%); }
+
+.owl-carousel.album-photos-wrap .photo, .owl-carousel.album-photos-wrap {
+  margin: 0; }
+
+.owl-carousel.album-photos-wrap .photo {
+  float: none; }
+
+.widget_ajax_wrap > .owl-carousel.album-photos-wrap {
+  margin-bottom: 10px; }
+
+.album-photos-wrap .photo img {
+  display: block;
+  max-width: 100%; }
+
+.album-photos-wrap .photo .info {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -15px;
+  padding: 10px 10px 8px;
+  opacity: 0;
+  -webkit-transition: .25s;
+  transition: .25s;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, rgba(0, 0, 0, 0.6)), to(transparent));
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0, transparent 100%);
+  font-size: 0.875rem;
+  color: #fff;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; }
+
+.album-photos-wrap .photo:hover .info, #related_photos_wrap .album-photos-wrap .photo .info {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 1; }
+
+.album-photos-wrap .photo h3 {
+  margin: 0;
+  position: absolute;
+  height: 40px;
+  line-height: 1.25rem;
+  font-size: 1rem;
+  top: 50%;
+  width: 100%;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.4);
+  color: #FFF;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  margin-top: -20px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  opacity: 0;
+  -webkit-transition: .25s;
+  transition: .25s;
+  z-index: 1; }
+
+.album-photos-wrap .photo h3 a {
+  color: inherit;
+  text-decoration: none;
+  text-shadow: 1px 1px 1px #666;
+  display: block;
+  height: inherit;
+  padding: 10px 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; }
+
+.album-photos-wrap .photo:hover h3, .widget_ajax_wrap > .owl-carousel.album-photos-wrap .photo h3 {
+  opacity: 1; }
+
+.album-photos-wrap .photo .info a {
+  display: inline-block;
+  color: #fff;
+  padding: 5px 7px;
+  border-radius: 2px;
+  -webkit-transition: .2s;
+  transition: .2s;
+  outline: 0;
+  text-decoration: none; }
+
+.album-photos-wrap .photo .info a:hover {
+  background: rgba(255, 255, 255, 0.2); }
+
+.album-photos-wrap .photo .photo-counts {
+  float: right;
+  position: relative;
+  top: 5px;
+  right: 5px;
+  height: 20px;
+  overflow: hidden;
+  margin: 0 0 0 5px; }
+
+.album-photos-wrap .photo .photo-counts > * {
+  margin-left: 5px;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1.125rem; }
+
+.album-photos-wrap .photo .photo-counts > *:before, .photo_icon:before {
+  content: '';
+  width: 20px;
+  height: 16px;
+  display: inline-block;
+  vertical-align: middle; }
+
+.album-photos-wrap .photo .info .comments:before {
+  background: url(../../images/photo-sprites.png) no-repeat -5px -16px; }
+
+.album-photos-wrap .photo .info .rating:before {
+  background: url(../../images/photo-sprites.png) no-repeat -48px -16px; }
+
+.album-photos-wrap .photo .info .hits-count:before {
+  background: url(../../images/photo-sprites.png) no-repeat -186px -13px; }
+
+.photo_icon.icon_download:before {
+  background: url(../../images/photo-sprites.png) no-repeat -148px -13px; }
+
+.album-photos-wrap .photo .delete, #album-photos-widget .actions .delete {
+  position: absolute;
+  top: -22px;
+  right: 0;
+  text-decoration: none;
+  background-color: rgba(215, 44, 44, 0.5);
+  color: #FFF;
+  padding: 4px 8px;
+  font-size: 0.75rem;
+  height: 22px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  line-height: 1rem;
+  -webkit-transition: .25s;
+  transition: .25s; }
+
+.album-photos-wrap .photo .delete:hover, #album-photos-widget .actions .delete:hover {
+  background-color: rgba(215, 44, 44, 0.7); }
+
+.album-photos-wrap .photo:hover .delete {
+  top: 0; }
+
+.album-photos-wrap .photo > a {
+  display: block;
+  max-height: 100%; }
+
+.album-photos-wrap .photo .info .positive {
+  color: lime; }
+
+.album-photos-wrap .photo .info .negative {
+  color: red; }
+
+.show-more {
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  background-color: #B3C2C9;
+  color: #FFF;
+  padding: 7px;
+  margin: 17px 0 20px 0;
+  background-position: center center;
+  height: 26px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  line-height: 0.75rem;
+  position: relative; }
+
+.show-more.show_spinner {
+  background-color: #FFF; }
+
+.show-more.show_spinner > span {
+  display: none; }
+
+.show-more:hover {
+  background-color: #bed4de;
+  color: #FFF; }
+
+.show-more .spinner {
+  display: none; }
+
+.show-more.show_spinner .spinner {
+  display: block;
+  margin-top: 0px; }
+
+.show-more.show_spinner:hover {
+  background-color: inherit; }
+
+span.tags_bar {
+  padding-left: 20px;
+  background: url(../../images/icons/tag.png) no-repeat left center;
+  line-height: 1rem; }
+
+.parent_title a + span.tags_bar {
+  margin: 0 0 0 10px; }
+
+span.album_date:before, span.album_date:after, span.album_hits:after, .exif_info > span:not(:last-child):after {
+  content: '\002022';
+  margin: 0 5px; }
+
+#body section h1 + .parent_title {
+  color: #95a5a6;
+  font-size: 0.9375rem; }
+
+#body section h1 + .parent_title a {
+  color: inherit;
+  text-decoration: none; }
+
+#body section h1 + .parent_title a:hover {
+  color: #D35400;
+  text-decoration: underline; }
+
+span.album_user {
+  display: inline-block;
+  vertical-align: middle; }
+
+span.album_user img {
+  border-radius: 50%; }
+
+/*# sourceMappingURL=styles.css.map */

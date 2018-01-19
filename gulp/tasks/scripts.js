@@ -6,7 +6,7 @@ gulp.task('jsSeparate:build', function () {
     gulp.src(config.path.src.jsSeparate)
         .pipe(plugin.changed(config.path.build.js))
         .pipe(plugin.plumber())
-        .pipe(plugin.uglify())
+        //.pipe(plugin.uglify())
         .pipe(gulp.dest(config.path.build.js));
 });
 

@@ -1,4 +1,4 @@
-<ul class="<?php echo $css_class; ?>">
+<ul class="navbar-nav <?php echo $css_class; ?>">
 
     <?php $last_level = 0; ?>
 
@@ -16,22 +16,29 @@
 
             $is_active = in_array($id, $active_ids);
 
-            $css_classes = array();
-            $css_classes_link = array();
-            $css_classes_dropdown = 'ldropdown-menu';
+            $nav_item = array();
+            $nav_link = array();
+            $dropdown = 'dropdown-menu';
 
-            if ($item['childs_count'] > 0) { $css_classes[] = 'ldropdown'; }
+            if ($item['childs_count'] > 0) {
+                $nav_item[] = 'dropdown dropdown-level-'. $item['level'];
+                $nav_link[] = 'dropdown-toggle';
+
+                if ($item['level'] == 2){
+                    $nav_item[] = 'dropright';
+                }
+            }
 
             if ($item['level'] == 1) {
-                $css_classes[] = 'nav-item';
-                $css_classes_link[] = 'nav-link';
+                $nav_item[] = 'nav-item';
+                $nav_link[] = 'nav-link';
             }
             if ($item['level'] > 1) {
-                $css_classes_link[] = 'ldropdown-item';
+                $nav_link[] = 'dropdown-item';
             }
 
-            if ($is_active) { $css_classes_link[] = 'active'; }
-            if (!empty($item['options']['class'])) { $css_classes[] = $item['options']['class']; }
+            if ($is_active) { $nav_link[] = 'active'; }
+            if (!empty($item['options']['class'])) { $nav_item[] = $item['options']['class']; }
 
             $onclick = isset($item['options']['onclick']) ? $item['options']['onclick'] : false;
             $onclick = isset($item['options']['confirm']) ? "return confirm('{$item['options']['confirm']}')" : $onclick;
@@ -46,11 +53,15 @@
 
         ?>
 
-        <li <?php if ($css_classes) { ?>class="<?php echo implode(' ', $css_classes); ?>"<?php } ?>>
+        <li <?php if ($nav_item) { ?>class="<?php echo implode(' ', $nav_item); ?>"<?php } ?>>
             <?php if ($item['disabled']) { ?>
                 <span class="item disabled"><?php html($item['title']); ?></span>
             <?php } else { ?>
-                <a <?php if (!empty($item['title'])) {?>title="<?php echo html($item['title']); ?>"<?php } ?> <?php if ($css_classes_link) { ?>class="<?php echo implode(' ', $css_classes_link); ?>"<?php } ?> <?php echo $data_attr; ?> href="<?php echo !empty($item['url']) ? htmlspecialchars($item['url']) : 'javascript:void(0)'; ?>" <?php if ($onclick) { ?>onclick="<?php echo $onclick; ?>"<?php } ?> <?php if ($target) { ?>target="<?php echo $target; ?>"<?php } ?>>
+                <a <?php if (!empty($item['title'])) { ?><?php } ?>
+                   <?php if ($nav_link) { ?>class="<?php echo implode(' ', $nav_link); ?>"<?php } ?> <?php echo $data_attr; ?>
+                   href="<?php echo !empty($item['url']) ? htmlspecialchars($item['url']) : 'javascript:void(0)'; ?>"
+                   <?php if ($onclick) { ?>onclick="<?php echo $onclick; ?>"<?php } ?>
+                   <?php if ($target) { ?>target="<?php echo $target; ?>"<?php } ?>>
                     <span class="wrap">
                         <?php if (!empty($item['title'])) { html($item['title']); } ?>
                         <?php if (isset($item['counter']) && $item['counter']){ ?>
@@ -60,7 +71,7 @@
                 </a>
             <?php } ?>
 
-            <?php if ($item['childs_count'] > 0) { ?><ul class="<?echo $css_classes_dropdown; ?>"><?php } ?>
+            <?php if ($item['childs_count'] > 0) { ?><ul class="<?echo $dropdown; ?>"><?php } ?>
 
         <?php $last_level = $item['level']; ?>
 

@@ -21,7 +21,7 @@
     <meta name="csrf-token" content="<?php echo cmsForm::getCSRFToken(); ?>" />
     <style><?php include('options.css.php'); ?></style>
 </head>
-<body id="<?php echo $device_type; ?>_device_type">
+<body id="<?php echo $device_type; ?>_device_type" data-device="<?php echo $device_type; ?>">
     <div id="layout">
 
         <?php if (!$config->is_site_on){ ?>
@@ -76,20 +76,21 @@
 
         <div id="body">
             <div class="container">
-                <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
-                    Tooltip on top
-                </button>
-                <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="Tooltip on right">
-                    Tooltip on right
-                </button>
-                <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">
-                    Tooltip on bottom
-                </button>
-                <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="left" title="Tooltip on left">
-                    Tooltip on left
-                </button>
                 <div>
-                    <div class="widget_ajax_wrap mb-4" id="widget_pos_maintop_fullwidth_top"><?php $this->widgets('maintop_fullwidth_top'); ?></div>
+                    <div class="widget_ajax_wrap mb-4" id="widget_pos_maintop_fullwidth_top">
+                        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                            <a class="navbar-brand d-lg-none" href="#">
+                                <?php html($this->options['owner_name'] ? $this->options['owner_name'] : cmsConfig::get('sitename')); ?>
+                            </a>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                <?php $this->widgets('maintop_fullwidth_top'); ?>
+                            </div>
+                        </nav>
+                    </div>
                     <div class="widget_ajax_wrap mb-4" id="widget_pos_maintop_fullwidth_center"><?php $this->widgets('maintop_fullwidth_center'); ?></div>
                     <div class="widget_ajax_wrap mb-4" id="widget_pos_maintop_fullwidth_bottom"><?php $this->widgets('maintop_fullwidth_bottom'); ?></div>
                 </div>
