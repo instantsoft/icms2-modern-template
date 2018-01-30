@@ -5,7 +5,7 @@
     $rss_query = isset($category['id']) ? "?category={$category['id']}" : '';
 
     $base_url = $ctype['name'];
-    $base_ds_url = href_to_rel($ctype['name']) . '-%s' . (isset($category['slug']) ? '/'.$category['slug'] : '');
+    $base_ds_url = href_to_rel($ctype['name']) . '%s' . (isset($category['slug']) ? '/'.$category['slug'] : '');
 
     if (!$is_frontpage){
 
@@ -98,42 +98,33 @@
 ?>
 
 <?php if ($page_header && !$request->isInternal() && !$is_frontpage){  ?>
-    <?php if (!empty($ctype['options']['is_rss']) && $this->controller->isControllerEnabled('rss')){ ?>
-        <div class="content_list_rss_icon">
-            <a href="<?php echo href_to('rss', 'feed', $ctype['name']) . $rss_query; ?>">RSS</a>
+    <?php if (!empty($list_styles)){ ?>
+        <div class="content_list_styles">
+            <?php foreach ($list_styles as $list_style) { ?>
+                <a rel="nofollow" href="<?php echo $list_style['url']; ?>" class="style_switch <?php echo $list_style['class']; ?>">
+                    <?php echo $list_style['title']; ?>
+                </a>
+            <?php } ?>
         </div>
     <?php } ?>
-    <h1><?php echo $page_header; ?></h1>
+    <h1>
+        <?php echo $page_header; ?>
+        <?php if (!empty($ctype['options']['is_rss']) && $this->controller->isControllerEnabled('rss')){ ?>
+            <a class="inline_rss_icon" title="RSS" href="<?php echo href_to('rss', 'feed', $ctype['name']) . $rss_query; ?>"></a>
+        <?php } ?>
+    </h1>
 <?php } ?>
 
-<?php if ($datasets && !$is_hide_items){ ?>
-    <div class="content_datasets">
-        <ul class="nav nav-tabs">
-            <?php $ds_counter = 0; ?>
-            <?php foreach($datasets as $set){ ?>
-                <?php $ds_selected = ($dataset == $set['name'] || (!$dataset && $ds_counter==0)); ?>
-                <li class="nav-item">
-
-                    <?php if ($ds_counter > 0) { $ds_url = sprintf(rel_to_href($base_ds_url), $set['name']); } ?>
-                    <?php if ($ds_counter == 0) { $ds_url = href_to($base_url, isset($category['slug']) ? $category['slug'] : ''); } ?>
-
-                    <?php if ($ds_selected){ ?>
-                        <div class="nav-link active"><?php echo $set['title']; ?></div>
-                    <?php } else { ?>
-                        <a class="nav-link" href="<?php echo $ds_url; ?>"><?php echo $set['title']; ?></a>
-                    <?php } ?>
-
-                </li>
-                <?php $ds_counter++; ?>
-            <?php } ?>
-        </ul>
-    </div>
-    <?php if (!empty($current_dataset['description'])){ ?>
-    <div class="content_datasets_description">
-        <?php echo $current_dataset['description']; ?>
-    </div>
-    <?php } ?>
-<?php } ?>
+<?php if ($datasets && !$is_hide_items){
+    $this->renderAsset('ui/datasets-panel', array(
+        'datasets'        => $datasets,
+        'dataset_name'    => $dataset,
+        'current_dataset' => $current_dataset,
+        'ds_prefix'       => '-',
+        'base_ds_url'     => rel_to_href($base_ds_url),
+        'class_nav'       => 'nav nav-tabs'
+    ));
+} ?>
 
 <?php if (!empty($category['description'])){?>
     <div class="category_description"><?php echo $category['description']; ?></div>

@@ -173,9 +173,10 @@ icms.forms = (function ($) {
         return o;
 	};
 
-    this.submit = function(){
+    this.submit = function(selector){
+        selector = selector || '.button-submit';
         icms.forms.submitted = true;
-        $('.button-submit').trigger('click');
+        $(selector).trigger('click');
     };
 
     //====================================================================//
@@ -229,7 +230,10 @@ icms.forms = (function ($) {
 
             if (result.errors == false){
                 if ("callback" in result){
-                    window[result.callback](form_data, result);
+                    window[result.callback](form_data, result); return;
+                }
+                if (result.success_text){
+                    icms.modal.alert(result.success_text);
                 }
                 return;
             }

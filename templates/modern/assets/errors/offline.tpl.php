@@ -15,19 +15,14 @@
 <body>
 
     <?php
-        $messages = cmsUser::getSessionMessages();
-        if ($messages){
-            ?>
-            <div class="sess_messages">
-                <?php
-                    foreach($messages as $message){
-                        echo $message;
-                    }
-                ?>
-            </div>
-            <?php
-        }
-    ?>
+    $messages = cmsUser::getSessionMessages();
+    if ($messages){ ?>
+        <div class="sess_messages">
+            <?php foreach($messages as $message){ ?>
+                <div class="<?php echo $message['class']; ?>"><?php echo $message['text']; ?></div>
+             <?php } ?>
+        </div>
+    <?php } ?>
 
     <div id="error-maintenance" class="d-flex h-100 align-items-center">
         <div class="container d-flex justify-content-center">

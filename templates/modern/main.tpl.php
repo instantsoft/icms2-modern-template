@@ -12,7 +12,7 @@
     <?php $this->addMainJS("templates/default/js/jquery.js"); ?>
     <?php $this->addMainJS("templates/{$this->name}/js/theme.js"); ?>
     <?php $this->addMainJS("templates/default/js/jquery-modal.js"); ?>
-    <?php $this->addMainJS("templates/default/js/core.js"); ?>
+    <?php $this->addMainJS("templates/{$this->name}/js/core.js"); ?>
     <?php $this->addMainJS("templates/default/js/modal.js"); ?>
     <?php if (cmsUser::isLogged()){ ?>
         <?php $this->addMainJS("templates/default/js/messages.js"); ?>
@@ -25,7 +25,13 @@
     <div id="layout">
 
         <?php if (!$config->is_site_on){ ?>
-            <div id="site_off_notice"><?php printf(ERR_SITE_OFFLINE_FULL, href_to('admin', 'settings', 'siteon')); ?></div>
+            <div id="site_off_notice">
+                <?php if (cmsUser::isAdmin()){ ?>
+                    <?php printf(ERR_SITE_OFFLINE_FULL, href_to('admin', 'settings', 'siteon')); ?>
+                <?php } else { ?>
+                    <?php echo ERR_SITE_OFFLINE; ?>
+                <?php } ?>
+            </div>
         <?php } ?>
 
         <header>
@@ -96,21 +102,17 @@
                 </div>
                 <?php
                 $messages = cmsUser::getSessionMessages();
-                    if ($messages){
-                        ?>
-                        <div class="alert alert-secondary alert-dismissible fade show" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            <?php
-                                foreach($messages as $message){
-                                    echo $message;
-                                }
-                            ?>
-                        </div>
-                        <?php
-                    }
-                ?>
+                if ($messages){ ?>
+                    <div class="alert alert-secondary alert-dismissible fade show" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <?php foreach($messages as $message){ ?>
+                            <div class="<?php echo $message['class']; ?>"><?php echo $message['text']; ?></div>
+                        <?php } ?>
+                    </div>
+                <?php } ?>
+
                 <div class="row">
                 <?php
                     $is_left_aside = $this->hasWidgetsOn('left_top', 'left_center', 'left_bottom');

@@ -1,10 +1,6 @@
 <?php
-
-    $base_url = $this->controller->name;
-
-    $this->setPageTitle($dataset ? LANG_COMMENTS . ' - ' . $dataset['title'] : LANG_COMMENTS);
-    $this->addBreadcrumb(LANG_COMMENTS, href_to($base_url));
-
+    $this->setPageTitle($page_title);
+    $this->addBreadcrumb(LANG_COMMENTS);
 ?>
 <div class="page-header-rss">
     <h1><?php echo LANG_COMMENTS; ?></h1>
@@ -13,28 +9,14 @@
     <?php } ?>
 </div>
 
-<?php if (sizeof($datasets)>1){ ?>
-    <div class="content_datasets">
-        <ul class="nav nav-tabs">
-            <?php $ds_counter = 0; ?>
-            <?php foreach($datasets as $set){ ?>
-                <?php $ds_selected = ($dataset_name == $set['name'] || (!$dataset_name && $ds_counter==0)); ?>
-                <li class="nav-item">
+<?php if (count($datasets) > 1){
+    $this->renderAsset('ui/datasets-panel', array(
+        'datasets'        => $datasets,
+        'dataset_name'    => $dataset_name,
+        'current_dataset' => $dataset,
+        'base_ds_url'     => $base_ds_url,
+        'class_nav'       => 'nav nav-tabs'
+    ));
+} ?>
 
-                    <?php if ($ds_counter > 0) { $ds_url = href_to($base_url, 'index', $set['name']); } ?>
-                    <?php if ($ds_counter == 0) { $ds_url = href_to($base_url); } ?>
-
-                    <?php if ($ds_selected){ ?>
-                        <div class="nav-link active"><?php echo $set['title']; ?></div>
-                    <?php } else { ?>
-                        <a class="nav-link" href="<?php echo $ds_url; ?>"><?php echo $set['title']; ?></a>
-                    <?php } ?>
-
-                </li>
-                <?php $ds_counter++; ?>
-            <?php } ?>
-        </ul>
-    </div>
-<?php } ?>
-
-<?php echo $items_list_html; ?>
+<?php echo $items_list_html;

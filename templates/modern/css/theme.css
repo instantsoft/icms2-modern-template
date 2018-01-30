@@ -236,4 +236,7 @@ blockquote {
 .tabs-menu > select {
   display: none; }
 
+.widget {
+  margin-bottom: 2rem; }
+
 /*# sourceMappingURL=../css/maps/theme.css.map */

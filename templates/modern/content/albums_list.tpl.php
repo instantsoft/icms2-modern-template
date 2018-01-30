@@ -138,14 +138,14 @@ if( $ctype['options']['list_show_filter'] ) {
                                 <?php } ?>
                             </div>
                         <?php } ?>
-                        <?php if ($fields['date_pub']['is_in_list']){ ?>
+                        <?php if ($fields['date_pub']['is_in_list'] && $item['is_approved']){ ?>
                             <div class="bar_item bi_date" title="<?php echo $fields['date_pub']['title']; ?>">
                                 <?php echo $fields['date_pub']['handler']->parse($item['date_pub']); ?>
                             </div>
                         <?php } ?>
                         <?php if (!$item['is_approved']){ ?>
-                            <div class="bar_item bi_not_approved">
-                                <?php echo LANG_CONTENT_NOT_APPROVED; ?>
+                            <div class="bar_item bi_not_approved <?php if (empty($item['is_new_item'])){ ?>is_edit_item<?php } ?>">
+                                <?php echo !empty($item['is_draft']) ? LANG_CONTENT_DRAFT_NOTICE : (empty($item['is_new_item']) ? LANG_CONTENT_EDITED.'. ' : '').LANG_CONTENT_NOT_APPROVED; ?>
                             </div>
                         <?php } ?>
                     </div>
