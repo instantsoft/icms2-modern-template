@@ -8,17 +8,19 @@
             $photo['title'] = $photo_url=='#' ? LANG_PHOTOS_NO_PUB : $photo['title'];
         ?>
 
-        <div class="photo photo-<?php echo $photo['id']; ?> <?php if ($is_photo_owner) { ?> is_my_photo<?php } ?> <?php echo (($photo_url=='#') ? 'unpublished' : ''); ?>" data-w="<?php echo $photo['sizes'][$preset_small]['width']; ?>" data-h="<?php echo $photo['sizes'][$preset_small]['height']; ?>" itemscope itemtype="http://schema.org/ImageObject">
-            <h3>
-                <a class="photo_page_link" href="<?php echo $photo_url; ?>" title="<?php html($photo['title']); ?>" itemprop="name">
-                    <?php html($photo['title']); ?>
-                </a>
-            </h3>
-            <a class="photo_page_link" href="<?php echo $photo_url; ?>" title="<?php html($photo['title']); ?>">
-                <img src="<?php echo html_image_src($photo['image'], $preset_small, true, false); ?>" title="<?php html($photo['title']); ?>" alt="<?php html($photo['title']); ?>" itemprop="thumbnail" />
+        <div class="photo hover-parent photo-<?php echo $photo['id']; ?> <?php if ($is_photo_owner) { ?> is_my_photo<?php } ?> <?php echo (($photo_url=='#') ? 'unpublished' : ''); ?>" data-w="<?php echo $photo['sizes'][$preset_small]['width']; ?>" data-h="<?php echo $photo['sizes'][$preset_small]['height']; ?>" itemscope itemtype="http://schema.org/ImageObject">
+            <a class="photo_page_link d-block" href="<?php echo $photo_url; ?>" title="<?php html($photo['title']); ?>">
+                <img class="img-fluid" src="<?php echo html_image_src($photo['image'], $preset_small, true, false); ?>" title="<?php html($photo['title']); ?>" alt="<?php html($photo['title']); ?>" itemprop="thumbnail" />
             </a>
-            <div class="info">
-                <div class="photo-counts">
+            <?php if(!empty($photo['user']['nickname'])){ ?>
+                <div class="position-absolute pos-b pos-l m-2 hover-child photo-author">
+                    <a title="<?php echo LANG_AUTHOR; ?>" href="<?php echo href_to('users', $photo['user']['id']); ?>" class="btn btn-light btn-sm">
+                        <i class="fa fa-user"></i> <?php html($photo['user']['nickname']); ?>
+                    </a>
+                </div>
+            <?php } ?>
+            <div class="position-absolute pos-b pos-r m-2 hover-child d-flex photo-info">
+                <div class="photo-counts btn btn-light btn-sm">
                     <span class="hits-count" title="<?php echo LANG_HITS; ?>">
                         <i class="fa fa-eye"></i> <?php echo $photo['hits_count']; ?>
                     </span>
@@ -29,15 +31,12 @@
                         <i class="fa fa-comment-o"></i> <?php echo $photo['comments']; ?>
                     </span>
                 </div>
-                <?php if(!empty($photo['user']['nickname'])){ ?>
-                    <a title="<?php echo LANG_AUTHOR; ?>" href="<?php echo href_to('users', $photo['user']['id']); ?>">
-                        <i class="fa fa-user"></i> <?php html($photo['user']['nickname']); ?>
-                    </a>
+                <?php if ($is_photo_owner) { ?>
+                    <a class="delete photo-delete btn btn-light btn-sm ml-2" href="#" data-id="<?php echo $photo['id']; ?>" title="<?php echo LANG_DELETE; ?>"><i class="fa fa-trash-o"></i></a>
                 <?php } ?>
             </div>
-            <?php if ($is_photo_owner) { ?>
-                <a class="delete" href="#" data-id="<?php echo $photo['id']; ?>"><?php echo LANG_DELETE; ?></a>
-            <?php } ?>
+
+            <h3 class="d-none" itemprop="name"><?php html($photo['title']); ?></h3>
             <meta itemprop="height" content="<?php echo $photo['sizes'][$preset_small]['height']; ?> px">
             <meta itemprop="width" content="<?php echo $photo['sizes'][$preset_small]['width']; ?> px">
         </div>

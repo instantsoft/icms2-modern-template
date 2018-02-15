@@ -32,26 +32,26 @@ module.exports = {
             style: 'src/sass/theme.scss',
             styleSystem: 'src/sass/system.scss', // Библиотеки подключаемые на каждой странице, объединяются в общий файл
             styleVendors:'src/sass/vendors/separate/**/*.*', // Библиотеки подключаемые на определенных страницах, каждая библиотека выводится отдельно
-            styleControllers: 'src/sass/controllers/*.scss',
-            img: 'src/images/**/*.*',
+            styleControllers: 'src/sass/controllers/*.+(scss|sass)',
+            img: 'src/img/**/*.*',
             fonts: 'src/fonts/**/*.*'
         },
         //Тут мы укажем, за изменением каких файлов мы хотим наблюдать
         watch: {
             js: 'src/js/**/*.js',
             style: [
-                'src/sass/ui/**/*.scss',
-                'src/sass/pages/**/*.scss',
-                'src/sass/widgets/**/*.scss',
-                'src/sass/layouts/**/*.scss',
+                'src/sass/ui/**/*.+(scss|sass)',
+                'src/sass/pages/**/*.+(scss|sass)',
+                'src/sass/widgets/**/*.+(scss|sass)',
+                'src/sass/layouts/**/*.+(scss|sass)',
                 'src/sass/theme.scss'],
             styleSystem: [
-                'src/sass/vendors/system/**/*.scss',
+                'src/sass/vendors/system/**/*.+(scss|sass)',
                 'src/sass/system.scss'],
             styleVendors: 'src/sass/vendors/separate/**/*.*',
-            styleControllers: 'src/sass/controllers/*.scss',
+            styleControllers: 'src/sass/controllers/*.+(scss|sass)',
             styleConfig: 'src/sass/config/_variables.scss',
-            img: 'src/images/**/*.*',
+            img: 'src/img/**/*.*',
             fonts: 'src/fonts/**/*.*'
         },
         browser: {

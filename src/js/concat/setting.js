@@ -14,8 +14,7 @@ $(document).ready(function () {
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()
     });
-
-
+    
     $(function () {
         if (device_type === 'desktop') {
             $('.navbar .dropdown').hover(function () {

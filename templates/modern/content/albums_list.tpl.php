@@ -17,61 +17,69 @@ if( $ctype['options']['list_show_filter'] ) {
 
 <?php if ($items){ ?>
 
-    <div class="content_list tiled <?php echo $ctype['name']; ?>_list">
-
-        <?php $columns = 3; $index = 1; ?>
+    <div class="content_list tiled <?php echo $ctype['name']; ?>_list form-row">
 
         <?php foreach($items as $item){ ?>
 
             <?php $stop = 0; ?>
+            <div class="col-lg-4 mb-3">
 
-            <div class="tile content_list_item <?php echo $ctype['name']; ?>_list_item">
+            <div class="content_list_item <?php echo $ctype['name']; ?>_list_item card">
 
-                <div class="photo">
-                    <div class="note">
-                        <?php echo html_spellcount($item['photos_count'], LANG_PHOTOS_PHOTO_SPELLCOUNT); ?>
-						<?php if ($item['is_public'] && !empty($fields['is_public']['is_in_list'])) { ?>
-							/ <span><?php echo LANG_PHOTOS_PUBLIC_ALBUM; ?></span>
-						<?php } ?>
-                    </div>
+                <div class="photo-album hover-parent">
                     <?php if (!empty($item['is_private_item'])) { ?>
                         <?php echo html_image(default_images('private', $ctype['photos_options']['preset_small']), $ctype['photos_options']['preset_small'], $item['title']); ?>
                     <?php } else { ?>
                         <a href="<?php echo href_to($ctype['name'], $item['slug'].'.html'); ?>" <?php if (!empty($item['cover_image']) && !empty($fields['cover_image']['is_in_list'])){ ?>style="background-image: url(<?php echo html_image_src($item['cover_image'], $ctype['photos_options']['preset_small'], true); ?>);"<?php } ?>>
                             <?php if (!empty($item['cover_image']) && !empty($fields['cover_image']['is_in_list'])){ ?>
-                                <?php echo html_image($item['cover_image'], $ctype['photos_options']['preset_small'], $item['title']); ?>
+                                <?php echo html_image($item['cover_image'], $ctype['photos_options']['preset_small'], $item['title'], array('class'=> 'img-fluid')); ?>
                             <?php } ?>
-                            <div class="photos_album_title_wrap">
-                                <?php if (!empty($fields['title']['is_in_list'])) { ?>
-                                    <div class="clear">
-                                        <div class="photos_album_title">
-                                            <?php if ($item['parent_id']){ ?>
-                                                <?php echo htmlspecialchars($item['parent_title']); ?> &rarr;
-                                            <?php } ?>
-
-                                            <?php if (!empty($item['is_private_item'])) { ?>
-                                                <?php html($item['title']); ?> <span class="is_private" title="<?php html($item['private_item_hint']); ?>"></span>
-                                            <?php } else { ?>
-                                                <?php html($item['title']); ?>
-                                                <?php if ($item['is_private']) { ?>
-                                                    <span class="is_private" title="<?php html(LANG_PRIVACY_HINT); ?>"></span>
-                                                <?php } ?>
-                                            <?php } ?>
-                                        </div>
-                                    </div>
-                                <?php } ?>
-                                <?php if (!empty($item['fields']['content'])) { ?>
-                                    <div class="photos_album_description_wrap">
-                                        <div class="photos_album_description">
-                                            <?php echo $item['fields']['content']['html']; ?>
-                                        </div>
-                                    </div>
-                                <?php } ?>
-                            </div>
                         </a>
                     <?php } ?>
-                    <?php unset($item['fields']['cover_image'], $item['fields']['content'], $item['fields']['is_public'], $item['fields']['title']); ?>
+                    <div class="note btn btn-light btn-sm hover-child">
+                        <span>
+                            <?php echo html_spellcount($item['photos_count'], LANG_PHOTOS_PHOTO_SPELLCOUNT); ?>
+                        </span>
+                        <?php if ($item['is_public'] && !empty($fields['is_public']['is_in_list'])) { ?>
+                        / <span><?php echo LANG_PHOTOS_PUBLIC_ALBUM; ?></span>
+                        <?php } ?>
+                    </div>
+                    <div class="position-absolute pos-b pos-l pos-r m-2 d-flex justify-content-between hover-child">
+                        <?php if ($fields['date_pub']['is_in_list'] && $item['is_approved']){ ?>
+                            <div class="btn btn-light btn-sm" title="<?php echo $fields['date_pub']['title']; ?>">
+                                <i class="fa fa-calendar mr-1"></i>
+                                <?php echo $fields['date_pub']['handler']->parse($item['date_pub']); ?>
+                            </div>
+                        <?php } ?>
+                        <?php if ($ctype['is_comments'] && $item['is_comments_on']){ ?>
+                            <?php if (!empty($item['is_private_item'])) { ?>
+                                <span class="btn btn-light btn-sm"><i class="fa fa-comment-o"></i> <?php echo intval($item['comments']); ?></span>
+                            <?php } else { ?>
+                                <a class="btn btn-light btn-sm" href="<?php echo href_to($ctype['name'], $item['slug'].'.html'); ?>#comments" title="<?php echo LANG_COMMENTS; ?>">
+                                    <i class="fa fa-comment-o"></i> <?php echo intval($item['comments']); ?>
+                                </a>
+                            <?php } ?>
+                        <?php } ?>
+                    </div>
                 </div>
+                <div class="photos_album_title_wrap px-3 py-3">
+                    <?php if (!empty($fields['title']['is_in_list'])) { ?>
+                        <a href="<?php echo href_to($ctype['name'], $item['slug'].'.html'); ?>" class="photos_album_title text-dark h5 mb-0 text-truncate d-block" title="<?php html($item['title']); ?>">
+                            <?php if ($item['parent_id']){ ?>
+                                <?php echo htmlspecialchars($item['parent_title']); ?> &rarr;
+                            <?php } ?>
+                            <?php if (!empty($item['is_private_item'])) { ?>
+                                <?php html($item['title']); ?> <span class="is_private" title="<?php html($item['private_item_hint']); ?>"></span>
+                            <?php } else { ?>
+                                <?php html($item['title']); ?>
+                                <?php if ($item['is_private']) { ?>
+                                    <span class="is_private" title="<?php html(LANG_PRIVACY_HINT); ?>"></span>
+                                <?php } ?>
+                            <?php } ?>
+                        </a>
+                    <?php } ?>
+                </div>
+                <?php unset($item['fields']['cover_image'], $item['fields']['content'], $item['fields']['is_public'], $item['fields']['title']); ?>
 
                 <div class="fields">
 
@@ -102,7 +110,8 @@ if( $ctype['options']['list_show_filter'] ) {
                 </div>
 
                 <?php if ($ctype['is_tags'] && !empty($ctype['options']['is_tags_in_list']) &&  $item['tags']){?>
-                    <div class="tags_bar">
+                    <div class="tags_bar px-3">
+                        <i class="fa fa-tag"></i>
                         <?php echo html_tags_bar($item['tags']); ?>
                     </div>
                 <?php } ?>
@@ -116,7 +125,7 @@ if( $ctype['options']['list_show_filter'] ) {
                 ?>
 
                 <?php if ($show_bar){ ?>
-                    <div class="info_bar">
+                    <div class="info_bar card-footer px-3 justify-content-between align-items-center">
                         <?php if (!empty($item['rating_widget'])){ ?>
                             <div class="bar_item bi_rating">
                                 <?php echo $item['rating_widget']; ?>
@@ -125,22 +134,6 @@ if( $ctype['options']['list_show_filter'] ) {
                         <?php if ($fields['user']['is_in_list']){ ?>
                             <div class="bar_item bi_user" title="<?php echo $fields['user']['title']; ?>">
                                 <?php echo $fields['user']['handler']->parse( $item['user'] ); ?>
-                            </div>
-                        <?php } ?>
-                        <?php if ($ctype['is_comments'] && $item['is_comments_on']){ ?>
-                            <div class="bar_item bi_comments">
-                                <?php if (!empty($item['is_private_item'])) { ?>
-                                    <?php echo intval($item['comments']); ?>
-                                <?php } else { ?>
-                                    <a href="<?php echo href_to($ctype['name'], $item['slug'].'.html'); ?>#comments" title="<?php echo LANG_COMMENTS; ?>">
-                                        <?php echo intval($item['comments']); ?>
-                                    </a>
-                                <?php } ?>
-                            </div>
-                        <?php } ?>
-                        <?php if ($fields['date_pub']['is_in_list'] && $item['is_approved']){ ?>
-                            <div class="bar_item bi_date" title="<?php echo $fields['date_pub']['title']; ?>">
-                                <?php echo $fields['date_pub']['handler']->parse($item['date_pub']); ?>
                             </div>
                         <?php } ?>
                         <?php if (!$item['is_approved']){ ?>
@@ -153,11 +146,9 @@ if( $ctype['options']['list_show_filter'] ) {
 
             </div>
 
-            <?php if ($index % $columns == 0) { ?>
-                <div class="clear"></div>
-            <?php } ?>
+            </div>
 
-        <?php $index++; } ?>
+        <?php } ?>
 
     </div>
 

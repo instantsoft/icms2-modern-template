@@ -1,3 +1,4 @@
+// Стили встроенных элементов
 /* Ajax Uploader ============================================================ */
 .qq-uploader {
   position: relative;
@@ -83,4 +84,28 @@
 // nav
 .content_datasets {
   margin-bottom: 1rem;
+}
+
+// append_html
+.append_html {
+  margin-bottom:$spacer;
+}
+
+// info_bar
+.info_bar {
+  display: flex;
+  @include media-breakpoint-up(md) {
+    .bi_share {
+      margin-left: auto;
+    }
+  }
+}
+
+// rating_widget
+.rating_widget {
+  display: flex;
+  justify-content: space-between;
+  .score {
+    padding: $input-padding-y-sm $input-padding-x-sm;
+  }
 }

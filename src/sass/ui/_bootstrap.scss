@@ -69,3 +69,27 @@
     }
   }
 }
+
+// position
+.pos-a {
+  position: absolute;
+}
+@each $prop, $abbrev in (top: t, left: l, right: r, bottom: b) {
+  .pos-#{$abbrev} {
+    #{$prop}: 0;
+  }
+}
+
+// Показ элемента при наведении на родителя
+.hover-parent {
+  .hover-child {
+    opacity: 0;
+    transition: .3s;
+  }
+  &:hover{
+    .hover-child {
+      opacity: 1;
+      transition: .3s;
+    }
+  }
+}

@@ -72,7 +72,7 @@
                             <span class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo LANG_PHOTOS_SIZE; ?></span>
                         <?php } ?>
 
-                        <div class="dropdown-menu filter-size-params">
+                        <div class="filter-size-params dropdown-menu dropdown-menu-right">
                             <fieldset>
                                 <legend class="text-nowrap"><?php echo LANG_PHOTOS_MORE_THAN; ?></legend>
                                 <div class="form-group">

@@ -5,7 +5,7 @@
 
     <ul class="nav nav-tabs nav-tabs-comments">
         <?php foreach ($comment_systems as $comment_system) { ?>
-            <li class="nav-item"><a class="nav-link" href="#tab-<?php echo $comment_system['name']; ?>"><?php echo $comment_system['title']; ?></a></li>
+            <li class="nav-item"><a class="nav-link <?php if($comment_system['name']== 'icms'){ ?>active<?php } ?>" href="#tab-<?php echo $comment_system['name']; ?>"><?php echo $comment_system['title']; ?></a></li>
         <?php } ?>
     </ul>
 

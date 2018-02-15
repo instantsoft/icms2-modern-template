@@ -102,10 +102,10 @@ gulp.task('styleVendors:build', function () {
         .pipe(plugin.sourcemaps.init({largeFile: true}))
         .pipe(plugin.sass().on('error', plugin.sass.logError))
         // .pipe(plugin.cssnano({zindex: false}))
-        // .pipe(plugin.autoprefixer({
-        //     browsers: ['last 2 versions'],
-        //     cascade: false
-        // }))
+        .pipe(plugin.autoprefixer({
+            browsers: ['last 2 versions'],
+            cascade: false
+        }))
         .pipe(plugin.pxtorem())
         .pipe(plugin.rename(function (path) {
             path.basename = path.dirname;
