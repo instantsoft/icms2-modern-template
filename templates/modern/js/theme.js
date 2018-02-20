@@ -6320,13 +6320,13 @@ $(document).ready(function () {
     
     $(function () {
         if (device_type === 'desktop') {
-            $('.navbar .dropdown').hover(function () {
+            $('.navbar-nav .dropdown').hover(function () {
                 $(this).children('.dropdown-menu').stop(true, true).delay(100).fadeIn(200);
             }, function () {
                 $(this).children('.dropdown-menu').stop(true, true).delay(100).fadeOut(200);
             });
         } else {
-            $('.navbar .dropdown').addClass('dropdown-click').children('a').removeClass('dropdown-toggle');
+            $('.navbar-nav .dropdown').addClass('dropdown-click').children('a').removeClass('dropdown-toggle');
             $('.dropdown-level-1 .nav-link').after('<a role="button" class="nav-link dropdown-toggle nav-link-toggle" data-toggle="dropdown" href="#"></a>');
         }
     });

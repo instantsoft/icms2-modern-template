@@ -23,7 +23,6 @@
 </head>
 <body id="<?php echo $device_type; ?>_device_type" data-device="<?php echo $device_type; ?>">
     <div id="layout">
-
         <?php if (!$config->is_site_on){ ?>
             <div id="site_off_notice">
                 <?php if (cmsUser::isAdmin()){ ?>
@@ -34,7 +33,7 @@
             </div>
         <?php } ?>
 
-        <header>
+        <header class="d-none">
             <div class="container">
                 <div class="widget_ajax_wrap" id="widget_pos_header"><?php $this->widgets('header', false, 'wrapper_plain'); ?></div>
                 <?php
@@ -167,39 +166,38 @@
                 <?php $this->renderAsset('ui/debug', array('core' => $core)); ?>
             </div>
         <?php } ?>
-
-        <footer>
-            <div class="container mb-4">
-                <div class="widget_ajax_wrap" id="widget_pos_footer"><?php $this->widgets('footer'); ?></div>
-            </div>
-            <div class="container d-flex align-items-center bg-light">
-
-                    <ul class="nav mr-auto">
-                        <li class="nav-item" id="copyright">
-                            <span class="navbar-text px-lg-2">
-                                <a href="<?php echo $this->options['owner_url'] ? $this->options['owner_url'] : href_to_home(); ?>">
-                                    <?php html($this->options['owner_name'] ? $this->options['owner_name'] : cmsConfig::get('sitename')); ?></a>
-                                &copy;
-                                <?php echo $this->options['owner_year'] ? $this->options['owner_year'] : date('Y'); ?>
-                            </span>
-                        </li>
-                        <li class="nav-item" id="info">
-                            <span class="navbar-text px-lg-2">
-                                <?php echo LANG_POWERED_BY_INSTANTCMS; ?>
-                                <?php if ($config->debug && cmsUser::isAdmin()) { ?>
-                                    <span class="item">
-                                        <a href="#debug_widget" title="<?php echo LANG_DEBUG; ?>" data-toggle="modal"><?php echo LANG_DEBUG; ?></a>
-                                    </span>
-                                    <span class="item">Time: <?php echo cmsDebugging::getTime('cms', 4); ?> s</span>
-                                    <span class="item">Mem: <?php echo round(memory_get_usage(true) / 1024 / 1024, 2); ?> Mb</span>
-                                <?php } ?>
-                            </span>
-                        </li>
-                    </ul>
-                    <div class="widget_ajax_wrap" id="widget_pos_footer_nav"><?php $this->widgets('footer_nav', false, 'wrapper_plain'); ?></div>
-            </div>
-        </footer>
     </div>
+    <footer >
+        <div class="container mb-4">
+            <div class="widget_ajax_wrap" id="widget_pos_footer"><?php $this->widgets('footer'); ?></div>
+        </div>
+        <div class="container d-flex align-items-center bg-light py-3">
+
+            <ul class="nav mr-auto">
+                <li class="nav-item" id="copyright">
+                    <span class="navbar-text px-lg-2">
+                        <a href="<?php echo $this->options['owner_url'] ? $this->options['owner_url'] : href_to_home(); ?>">
+                            <?php html($this->options['owner_name'] ? $this->options['owner_name'] : cmsConfig::get('sitename')); ?></a>
+                        &copy;
+                        <?php echo $this->options['owner_year'] ? $this->options['owner_year'] : date('Y'); ?>
+                    </span>
+                </li>
+                <li class="nav-item" id="info">
+                    <span class="navbar-text px-lg-2">
+                        <?php echo LANG_POWERED_BY_INSTANTCMS; ?>
+                        <?php if ($config->debug && cmsUser::isAdmin()) { ?>
+                            <span class="item">
+                                <a href="#debug_widget" title="<?php echo LANG_DEBUG; ?>" data-toggle="modal"><?php echo LANG_DEBUG; ?></a>
+                            </span>
+                            <span class="item">Time: <?php echo cmsDebugging::getTime('cms', 4); ?> s</span>
+                            <span class="item">Mem: <?php echo round(memory_get_usage(true) / 1024 / 1024, 2); ?> Mb</span>
+                        <?php } ?>
+                    </span>
+                </li>
+            </ul>
+            <div class="widget_ajax_wrap" id="widget_pos_footer_nav"><?php $this->widgets('footer_nav', false, 'wrapper_plain'); ?></div>
+        </div>
+    </footer>
 
 </body>
 </html>
