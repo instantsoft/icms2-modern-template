@@ -4,13 +4,13 @@
 
     <div id="content-slider-<?php echo $widget->id; ?>" class="widget_content_slider" data-id="<?php echo $widget->id; ?>" data-delay="<?php echo $delay; ?>">
 
-        <table><tr>
+        <div class="d-flex">
             <?php
                 $first_item            = $items[key($items)];
                 $big_image_preset      = $big_image_preset ? $big_image_preset : 'big';
                 $first_item_is_private = $first_item['is_private'] && $hide_except_title && !$first_item['user']['is_friend'];
             ?>
-            <td class="slide">
+            <div class="slide">
                 <a href="<?php echo href_to($ctype['name'], $first_item['slug']) . '.html'; ?>">
                     <?php foreach($items as $id=>$item) { ?>
                         <?php
@@ -39,13 +39,13 @@
                                     <!--/noindex-->
                                 <?php } ?>
                             <?php } ?>
-                            <span class="date"><?php html(string_date_age_max($first_item['date_pub'], true)); ?></span>
+                            <span class="date"><i class="fa fa-calendar"></i> <?php html(string_date_age_max($first_item['date_pub'], true)); ?></span>
                         </div>
                     </div>
                 </a>
-            </td>
+            </div>
 
-            <td class="items">
+            <div class="items">
 
                 <?php foreach($items as $id=>$item) { ?>
 
@@ -61,35 +61,37 @@
                         <div class="image">
                             <?php echo html_image($image, 'micro', $item['title']); ?>
                         </div>
-                        <div class="title">
-                            <?php html($item['title']); ?>
-                        </div>
-                        <div class="data" style="display:none">
-                            <div class="url"><?php echo $item['url']; ?></div>
-                            <div class="teaser">
-                                <?php if ($teaser_field && !empty($item[$teaser_field])) { ?>
-                                    <?php if (!$item['is_private']) { ?>
-                                        <span>
-                                            <?php echo string_short($item[$teaser_field], $teaser_len); ?>
-                                        </span>
-                                    <?php } else { ?>
-                                        <!--noindex-->
-                                        <span class="private_field_hint">
-                                            <?php echo LANG_PRIVACY_PRIVATE_HINT; ?>
-                                        </span>
-                                        <!--/noindex-->
+                        <div>
+                            <div class="title">
+                                <?php html($item['title']); ?>
+                            </div>
+                            <div class="data" style="display:none">
+                                <div class="url"><?php echo $item['url']; ?></div>
+                                <div class="teaser">
+                                    <?php if ($teaser_field && !empty($item[$teaser_field])) { ?>
+                                        <?php if (!$item['is_private']) { ?>
+                                            <span>
+                                                <?php echo string_short($item[$teaser_field], $teaser_len); ?>
+                                            </span>
+                                        <?php } else { ?>
+                                            <!--noindex-->
+                                            <span class="private_field_hint">
+                                                <?php echo LANG_PRIVACY_PRIVATE_HINT; ?>
+                                            </span>
+                                            <!--/noindex-->
+                                        <?php } ?>
                                     <?php } ?>
-                                <?php } ?>
-                                <span class="date"><?php html(string_date_age_max($item['date_pub'], true)); ?></span>
+                                    <span class="date"><i class="fa fa-calendar"></i> <?php html(string_date_age_max($item['date_pub'], true)); ?></span>
+                                </div>
                             </div>
                         </div>
                     </div>
 
                 <?php } ?>
 
-            </td>
+            </div>
 
-		</tr></table>
+		</div>
 
 	</div>
 

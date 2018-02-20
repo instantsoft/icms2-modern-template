@@ -1,6 +1,6 @@
 <div class="widget_content_tree">
 
-    <ul>
+    <ul class="widget_content_tree_ul list-unstyled">
 
         <?php $last_level = 0; $is_visible = false; $show_full_tree = $widget->getOption('show_full_tree'); ?>
 
@@ -30,12 +30,12 @@
             ?>
 
             <li <?php if ($css_classes) { ?>class="<?php echo implode(' ', $css_classes); ?>"<?php } ?>>
-
-                <a class="item" href="<?php echo $url; ?>">
+                <i class="fa fa-folder-o"></i>
+                <a class="text-dark item" href="<?php echo $url; ?>">
                     <?php html($item['title']); ?>
                 </a>
 
-                <?php if ($item['childs_count']) { ?><ul><?php } ?>
+                <?php if ($item['childs_count']) { ?><ul class="list-unstyled ml-3"><?php } ?>
 
                 <?php $last_level = $item['ns_level']; ?>
 

@@ -1,0 +1,55 @@
+.widget_content_slider {
+  line-height: 1;
+  .slide {
+    position: relative;
+    flex:1 0 75%;
+    max-width:75%;
+    overflow: hidden;
+    img {
+      display: none;
+      width: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      &:first-child {
+        display: block;
+      }
+    }
+    .heading {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: transparentize($gray-900, 0.5);
+      padding: 1rem;
+      color: $white;
+    }
+    h2 {
+      font-size: 20px;
+      margin-bottom: 0;
+    }
+  }
+  .items {
+    display: flex;
+    flex-direction: column;
+    flex:1 0 25%;
+    max-width:25%;
+  }
+  .item {
+    display: flex;
+    border: 1px solid $gray-300;
+    padding: .5rem;
+    flex: 1;
+    & + .item {
+      margin-top: -1px;
+    }
+    &:hover,
+    &.active {
+      background-color: $gray-200;
+      cursor: pointer;
+    }
+    .image {
+      margin-right: .5rem;
+    }
+  }
+}
