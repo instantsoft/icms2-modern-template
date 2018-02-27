@@ -94,6 +94,8 @@
 // info_bar
 .info_bar {
   display: flex;
+  align-items: center;
+  flex-wrap: wrap;
   @include media-breakpoint-up(md) {
     .bi_share {
       margin-left: auto;

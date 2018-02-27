@@ -15,26 +15,25 @@
 
 <?php if ($items){ ?>
 
-    <div class="content_list tiled <?php echo $ctype['name']; ?>_list">
-
-        <?php $columns = 3; $index = 1; ?>
+    <div class="row content_list tiled <?php echo $ctype['name']; ?>_list">
 
         <?php foreach($items as $item){ ?>
 
             <?php $stop = 0; ?>
-
-            <div class="tile <?php echo $ctype['name']; ?>_list_item<?php if (!empty($item['is_vip'])){ ?> is_vip<?php } ?>">
+            <div class="col-12 col-sm-6 col-lg-4 mb-4">
+                <div class="card h-100 tile <?php echo $ctype['name']; ?>_list_item<?php if (!empty($item['is_vip'])){ ?> is_vip<?php } ?>">
 
                 <?php if (!empty($item['fields']['photo'])){ ?>
                     <?php $preset = $fields['photo']['options']['size_teaser']; ?>
-                    <div class="photo" style="background-image: url(<?php echo html_image_src((empty($item['is_private_item']) ? $item['photo'] : default_images('private', $preset)), $preset, true); ?>);">
+                    <div class="photo hover-parent card-img-top" style="background-image: url(<?php echo html_image_src((empty($item['is_private_item']) ? $item['photo'] : default_images('private', $preset)), $preset, true); ?>);">
                         <?php if ($fields['date_pub']['is_in_list']){ ?>
-                            <div class="note" title="<?php echo $fields['date_pub']['title']; ?>">
+                            <div class="hover-child position-absolute pos-b pos-l pos-r bg-opacity-4 text-white px-3 py-2" title="<?php echo $fields['date_pub']['title']; ?>">
+                                <i class="fa fa-calendar"></i>
                                 <?php echo $fields['date_pub']['handler']->parse( $item['date_pub'] ); ?>
                             </div>
                         <?php } ?>
                         <?php if (empty($item['is_private_item'])) { ?>
-                            <a href="<?php echo href_to($ctype['name'], $item['slug'].'.html'); ?>">
+                            <a href="<?php echo href_to($ctype['name'], $item['slug'].'.html'); ?>" class="photo-link">
                                 <?php echo html_image($item['photo'], $preset, $item['title']); ?>
                             </a>
                         <?php } ?>
@@ -42,7 +41,7 @@
                     </div>
                 <?php } ?>
 
-                <div class="fields">
+                <div class="fields card-body p-3">
 
                 <?php foreach($item['fields'] as $field){ ?>
 
@@ -57,15 +56,15 @@
                         <?php } ?>
 
                         <?php if ($field['name'] == 'title' && $ctype['options']['item_on']){ ?>
-                            <h2 class="value">
+                            <h2 class="value field-title-h">
                                 <?php if ($item['parent_id']){ ?>
-                                    <a class="parent_title" href="<?php echo rel_to_href($item['parent_url']); ?>"><?php html($item['parent_title']); ?></a>
+                                    <a class="parent_title text-dark" href="<?php echo rel_to_href($item['parent_url']); ?>"><?php html($item['parent_title']); ?></a>
                                     &rarr;
                                 <?php } ?>
                                 <?php if (!empty($item['is_private_item'])) { $stop++; ?>
                                     <?php html($item[$field['name']]); ?> <span class="is_private" title="<?php html($item['private_item_hint']); ?>"></span>
                                 <?php } else { ?>
-                                    <a class="title" href="<?php echo href_to($ctype['name'], $item['slug'].'.html'); ?>">
+                                    <a class="title text-dark" href="<?php echo href_to($ctype['name'], $item['slug'].'.html'); ?>">
                                         <?php html($item[$field['name']]); ?>
                                     </a>
                                     <?php if ($item['is_private']) { ?>
@@ -98,27 +97,30 @@
                 ?>
 
                 <?php if ($show_bar){ ?>
-                    <div class="info_bar">
+                    <small class="card-footer info_bar">
                         <?php if (!empty($item['rating_widget'])){ ?>
-                            <div class="bar_item bi_rating">
+                            <div class="bar_item mr-2 bi_rating">
                                 <?php echo $item['rating_widget']; ?>
                             </div>
                         <?php } ?>
                         <?php if ($fields['user']['is_in_list']){ ?>
-                            <div class="bar_item bi_user" title="<?php echo $fields['user']['title']; ?>">
+                            <div class="bar_item mr-2 bi_user" title="<?php echo $fields['user']['title']; ?>">
                                 <?php echo $fields['user']['handler']->parse( $item['user'] ); ?>
                             </div>
                         <?php } ?>
                         <?php if (!empty($ctype['options']['hits_on'])){ ?>
-                            <div class="bar_item bi_hits" title="<?php echo LANG_HITS; ?>">
+                            <div class="bar_item mr-2 bi_hits" title="<?php echo LANG_HITS; ?>">
+                                <i class="fa fa-eye"></i>
                                 <?php echo $item['hits_count']; ?>
                             </div>
                         <?php } ?>
                         <?php if ($ctype['is_comments'] && $item['is_comments_on']){ ?>
                             <div class="bar_item bi_comments">
                                 <?php if (!empty($item['is_private_item'])) { ?>
+                                    <i class="fa fa-comment-o"></i>
                                     <?php echo intval($item['comments']); ?>
                                 <?php } else { ?>
+                                    <i class="fa fa-comment-o"></i>
                                     <a href="<?php echo href_to($ctype['name'], $item['slug'].'.html'); ?>#comments" title="<?php echo LANG_COMMENTS; ?>">
                                         <?php echo intval($item['comments']); ?>
                                     </a>
@@ -126,20 +128,16 @@
                             </div>
                         <?php } ?>
                         <?php if (!$item['is_approved']){ ?>
-                            <div class="bar_item bi_not_approved <?php if (empty($item['is_new_item'])){ ?>is_edit_item<?php } ?>">
+                            <div class="bar_item text-danger bi_not_approved <?php if (empty($item['is_new_item'])){ ?>is_edit_item<?php } ?>">
                                 <?php echo !empty($item['is_draft']) ? LANG_CONTENT_DRAFT_NOTICE : (empty($item['is_new_item']) ? LANG_CONTENT_EDITED.'. ' : '').LANG_CONTENT_NOT_APPROVED; ?>
                             </div>
                         <?php } ?>
-                    </div>
+                    </small>
                 <?php } ?>
 
             </div>
-
-            <?php if ($index % $columns == 0) { ?>
-                <div class="clear"></div>
-            <?php } ?>
-
-        <?php $index++; } ?>
+            </div>
+        <?php } ?>
 
     </div>
 

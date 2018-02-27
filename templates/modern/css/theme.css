@@ -35,6 +35,9 @@ blockquote {
 .fs-20 {
   font-size: 1.25rem !important; }
 
+.bg-opacity-4 {
+  background-color: rgba(52, 58, 64, 0.4); }
+
 /* Ajax Uploader ============================================================ */
 .qq-uploader {
   position: relative;
@@ -111,7 +114,12 @@ blockquote {
 .info_bar {
   display: -webkit-box;
   display: -ms-flexbox;
-  display: flex; }
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap; }
   @media (min-width: 768px) {
     .info_bar .bi_share {
       margin-left: auto; } }
@@ -310,6 +318,41 @@ body {
 
 .widget {
   margin-bottom: 2rem; }
+
+.tiled .field {
+  margin-bottom: .5rem; }
+  .tiled .field:last-child {
+    margin-bottom: 0; }
+
+.tiled .photo {
+  position: relative;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: white; }
+  .tiled .photo:before {
+    content: "";
+    display: block;
+    padding-top: 66.5%; }
+  .tiled .photo img {
+    display: none; }
+  .tiled .photo-link {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: block; }
+    .tiled .photo-link img {
+      display: none; }
+
+.tiled .field-title-h {
+  font-size: 1rem;
+  margin-bottom: 0; }
+
+.tiled .title {
+  font-weight: bold; }
 
 .widget_content_filter .title {
   margin-bottom: .5rem; }
