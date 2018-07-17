@@ -161,11 +161,6 @@
             </div>
         </div>
 
-        <?php if ($config->debug && cmsUser::isAdmin()){ ?>
-            <div id="debug_block">
-                <?php $this->renderAsset('ui/debug', array('core' => $core)); ?>
-            </div>
-        <?php } ?>
     </div>
     <footer >
         <div class="container mb-4">
@@ -184,20 +179,49 @@
                 </li>
                 <li class="nav-item" id="info">
                     <span class="navbar-text px-lg-2">
-                        <?php echo LANG_POWERED_BY_INSTANTCMS; ?>
+
+                        <span class="item powered_by">
+                            <?php echo LANG_POWERED_BY_INSTANTCMS; ?>
+                        </span>
+
                         <?php if ($config->debug && cmsUser::isAdmin()) { ?>
-                            <span class="item">
-                                <a href="#debug_widget" title="<?php echo LANG_DEBUG; ?>" data-toggle="modal"><?php echo LANG_DEBUG; ?></a>
+
+                            <?php $debug = cmsDebugging::getPointsTargets(); ?>
+
+                            <span class="item debug_block">
+                                <a href="#debug_block" title="<?php echo LANG_DEBUG; ?>" data-toggle="modal"><?php echo LANG_DEBUG; ?></a>
                             </span>
-                            <span class="item">Time: <?php echo cmsDebugging::getTime('cms', 4); ?> s</span>
-                            <span class="item">Mem: <?php echo round(memory_get_usage(true) / 1024 / 1024, 2); ?> Mb</span>
+
+                            <span class="item debug_sql">
+                                SQL: <?php echo $debug['db']['count']; ?>
+                            </span>
+
+                            <span class="item debug_events">
+                                Events: <?php echo $debug['events']['count']; ?>
+                            </span>
+
+                            <span class="item debug_time">
+                                Time: <?php echo cmsDebugging::getTime('cms', 4); ?> s
+                            </span>
+
+                            <span class="item debug_mem">
+                                Mem: <?php echo round(memory_get_usage(true)/1024/1024, 2); ?> Mb
+                            </span>
+
                         <?php } ?>
+
                     </span>
                 </li>
             </ul>
             <div class="widget_ajax_wrap" id="widget_pos_footer_nav"><?php $this->widgets('footer_nav', false, 'wrapper_plain'); ?></div>
         </div>
     </footer>
+
+    <?php if ($config->debug && cmsUser::isAdmin()){ ?>
+        <div id="debug_block" class="modal fade" role="dialog" aria-hidden="true">
+            <?php $this->renderAsset('ui/debug', array('core' => $core)); ?>
+        </div>
+    <?php } ?>
 
 </body>
 </html>
